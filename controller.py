@@ -1,6 +1,6 @@
 import datetime, time
 
-import tutor, wipe
+import tutor, wipe_user_progress
 
 from tutor_py_files import regions
 
@@ -11,8 +11,7 @@ while True:
     print('start_time', start_time.strftime('%d/%m/%Y %H:%M:%S'))
 
 
-
-    wipe.wipe()
+    wipe_user_progress.wipe()
     driver = tutor.open_browser()
     tutor.go_to_social_network(driver)
     tutor.login(driver)
