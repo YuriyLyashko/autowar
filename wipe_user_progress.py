@@ -7,12 +7,11 @@ from open_chrome import open_chrome
 from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_AUTH_INFO, SOC_NET_LINKS
 
 
-SOCIAL = 'FB' # 'VK', 'FB'
-SERVER = 'FB' # 'DM', 'FB'
-ID = SOC_AUTH_INFO[SOCIAL]['ID']
 
-
-def wipe():
+def wipe(SOCIAL, SERVER, ID):
+    # SOCIAL = 'FB'  # 'VK', 'FB'
+    # SERVER = 'FB'  # 'DM', 'FB'
+    # ID = SOC_AUTH_INFO[SOCIAL]['ID']
     '''open chrome'''
     driver = open_chrome()
     driver.implicitly_wait(30)

@@ -3,6 +3,11 @@ import datetime, time
 import tutor, wipe_user_progress
 
 from tutor_py_files import regions
+from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_AUTH_INFO, SOC_NET_LINKS
+
+SOCIAL = 'FB'  # 'VK', 'FB'
+SERVER = 'FB'  # 'DM', 'FB'
+ID = SOC_AUTH_INFO[SOCIAL]['ID']
 
 n = 1
 while True:
@@ -11,7 +16,7 @@ while True:
     print('start_time', start_time.strftime('%d/%m/%Y %H:%M:%S'))
 
 
-    wipe_user_progress.wipe()
+    wipe_user_progress.wipe(SOCIAL, SERVER, ID)
     driver = tutor.open_browser()
     tutor.go_to_social_network(driver)
     tutor.login(driver)
