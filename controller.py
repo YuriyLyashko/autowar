@@ -9,6 +9,7 @@ SOCIAL = 'FB'  # 'VK', 'FB'
 SERVER = 'FB'  # 'DM', 'FB'
 ID = SOC_AUTH_INFO[SOCIAL]['ID']
 
+
 n = 1
 while True:
     start_time = datetime.datetime.now()
