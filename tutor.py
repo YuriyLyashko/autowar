@@ -491,35 +491,35 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(20)
     pyautogui.moveTo(5, 5, 1)
-    print('''click to quest_4_7_icon''')
+    '''click to quest_4_7_icon'''
     quest_4_7_icon = find_flashing_image('quest_4_7_icon.png',
                                          region=REGIONS_ON_FULL_SCREEN['center_down_menu'],
                                          grayscale=True)
     if quest_4_7_icon:
         print('quest_4_7_icon is finded')
         click_to_center(quest_4_7_icon)
-    else:
-        print('quest_4_7_icon is NOT finded')
+        time.sleep(2)
+        '''find help_arrow_down'''
         find_flashing_image_and_click('help_arrow_down.png',
-                                      lower_on=70,
-                                      region=REGIONS_ON_FULL_SCREEN['center_down_menu'],
+                                      lower_on=80,
+                                      region=REGIONS_ON_FULL_SCREEN['center_mid'],
                                       grayscale=True
                                       )
-
-
-
-    # find_flashing_image_and_click('quest_4_7_icon.png',
-    #                               region=REGIONS_ON_FULL_SCREEN['center_down_menu'],
-    #                               grayscale=True
-    #                               )
-
-    time.sleep(2)
-    '''find help_arrow_down'''
-    find_flashing_image_and_click('help_arrow_down.png',
-                                  lower_on=80,
-                                  region=REGIONS_ON_FULL_SCREEN['center_mid'],
-                                  grayscale=True
-                                  )
+    else:
+        print('quest_4_7_icon is NOT finded')
+        help_arrow_down = find_flashing_image('help_arrow_down.png',
+                                              region=REGIONS_ON_FULL_SCREEN['center_down_menu'],
+                                              grayscale=True
+                                              )
+        if help_arrow_down:
+            click_to_center(help_arrow_down, lower_on=70)
+            time.sleep(2)
+            '''find help_arrow_down'''
+            find_flashing_image_and_click('help_arrow_down.png',
+                                          lower_on=80,
+                                          region=REGIONS_ON_FULL_SCREEN['center_mid'],
+                                          grayscale=True
+                                          )
 
 
     time.sleep(15)
