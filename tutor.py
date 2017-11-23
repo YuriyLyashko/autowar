@@ -1,8 +1,6 @@
-import os, pyautogui
+import pyautogui
 import time, datetime
 import browser
-from open_chrome import open_chrome
-from authentication_info import SOC_AUTH_INFO, SOC_NET_LINKS
 from tutor_py_files import wrappers
 
 
@@ -383,13 +381,17 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                 browser.click_to_center(help_arrow_right, righter_on=50)
 
                 time.sleep(1)
-                '''click to area_helth'''
-                '''find help_arrow_down'''
-                browser.find_flashing_image_and_click('help_arrow_down.png',
-                                                      lower_on=100,
-                                                      region=REGIONS_ON_FULL_SCREEN['center_mid'],
-                                                      grayscale=True
-                                                      )
+                help_arrow_down = browser.find_flashing_image('help_arrow_down.png',
+                                                              region=REGIONS_ON_FULL_SCREEN['center_mid'],
+                                                              grayscale=True
+                                                              )
+                if help_arrow_down:
+                    print('way 2.2.1.1')
+                    '''click to area_helth'''
+                    '''find help_arrow_down'''
+                    browser.click_to_center(help_arrow_down, lower_on=100)
+                else:
+                    print('area_helth help_arrow_down is NOT finded')
 
     time.sleep(20)
     pyautogui.moveTo(5, 5, 1)
