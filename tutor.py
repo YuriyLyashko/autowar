@@ -568,13 +568,13 @@ def quest_6(REGIONS_ON_FULL_SCREEN):
                                           )
 
 
-    # time.sleep(2)
-    # pyautogui.moveTo(5, 5, 1)
-    # '''click to button_continue'''
-    # find_flashing_image_and_click('button_continue.png',
-    #                               region=REGIONS_ON_FULL_SCREEN['center_mid'],
-    #                               grayscale=True
-    #                               )
+    time.sleep(2)
+    pyautogui.moveTo(5, 5, 1)
+    '''click to button_continue'''
+    browser.find_flashing_image_and_click('button_continue.png',
+                                  region=REGIONS_ON_FULL_SCREEN['center_mid'],
+                                  grayscale=True
+                                  )
 
 @wrappers.print_time
 def quest_7(REGIONS_ON_FULL_SCREEN):

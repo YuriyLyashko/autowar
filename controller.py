@@ -49,6 +49,10 @@ while True:
     tutor.quest_4(REGIONS_ON_FULL_SCREEN)
     tutor.quest_5(REGIONS_ON_FULL_SCREEN)
     tutor.quest_6(REGIONS_ON_FULL_SCREEN)
+    tutor.quest_7(REGIONS_ON_FULL_SCREEN)
+    tutor.quest_8(REGIONS_ON_FULL_SCREEN)
+    tutor.quest_9(REGIONS_ON_FULL_SCREEN)
+    tutor.quest_10(REGIONS_ON_FULL_SCREEN)
 
 
 
