@@ -1,5 +1,6 @@
 import pyautogui, time, datetime, os
 from open_chrome import open_chrome
+from tutor_py_files.wrappers import else_click_to_help_arrow, print_time
 
 
 pyautogui.FAILSAFE = False
@@ -23,16 +24,22 @@ def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
     pyautogui.moveTo(x=x+righter_on-lefter_on, y=y+lower_on-higher_on, duration=0.5)
     pyautogui.click()
 
+
+@else_click_to_help_arrow
+@print_time
 def find_image_and_click(image_name, **kwargs):
     image = find_image(image_name, **kwargs)
     if not image: pyautogui.alert("{} doesn't find".format(image_name))
     print(image_name, image, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
     if image:
         click_to_center(image)
+        return True
+    return False
 
 def find_flashing_image_and_click(image_name,
                                   higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
                                   **kwargs):
+    # print('find_flashing_image_and_click')
     image = find_flashing_image(image_name, **kwargs)
     if not image: pyautogui.alert("{} doesn't find".format(image_name))
     print(image_name, image, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))

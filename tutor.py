@@ -672,17 +672,16 @@ def quest_7(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(1)
     '''find quest_7_5_icon'''
-    quest_7_5_icon = browser.find_flashing_image('quest_7_5_icon.png',
-                                                 region=REGIONS_ON_FULL_SCREEN['right_down'],
-                                                 grayscale=True
-                                                 )
-    if quest_7_5_icon:
-        browser.click_to_center(quest_7_5_icon)
-    else:
-        browser.find_flashing_image_and_click('quest_7_5_icon.png',
-                                              region=REGIONS_ON_FULL_SCREEN['center_mid'],
-                                              grayscale=True
-                                              )
+    for region in ('left_up', 'center_mid', 'right_down'):
+        quest_7_5_icon = browser.find_flashing_image('quest_7_5_icon.png',
+                                                     region=REGIONS_ON_FULL_SCREEN[region],
+                                                     grayscale=True
+                                                     )
+        if quest_7_5_icon:
+            browser.click_to_center(quest_7_5_icon)
+            break
+
+
 
     time.sleep(20)
     pyautogui.moveTo(5, 5, 1)
@@ -824,7 +823,7 @@ def quest_9(REGIONS_ON_FULL_SCREEN):
                                           grayscale=True
                                           )
 
-    time.sleep(2)
+    time.sleep(10)
     '''click to button_ok'''
     browser.find_flashing_image_and_click('button_ok.png',
                                           region=REGIONS_ON_FULL_SCREEN['center_down'],

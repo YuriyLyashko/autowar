@@ -25,7 +25,11 @@ def get_regions(left_coord_top_menu, width_top_menu, height_screen, width_screen
                                         height_screen / 2)
                          }
 
-    REGIONS_ON_FULL_SCREEN = {'left_mid': (0,
+    REGIONS_ON_FULL_SCREEN = {'left_up': (0,
+                                          0,
+                                          width_screen / 2,
+                                          height_screen / 2),
+                              'left_mid': (0,
                                            height_screen / 4,
                                            width_screen / 5,
                                            height_screen / 2),

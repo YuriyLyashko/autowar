@@ -17,7 +17,7 @@ while True:
     print('start_time', start_time.strftime('%d/%m/%Y %H:%M:%S'))
 
 
-    wipe_user_progress.wipe(SOCIAL, SERVER, ID)
+    # wipe_user_progress.wipe(SOCIAL, SERVER, ID)
     driver = browser.open_browser()
     browser.go_to_social_network(driver, SOC_NET_LINKS[SOCIAL])
     browser.login(driver, SOC_AUTH_INFO[SOCIAL]['LOGIN'], SOC_AUTH_INFO[SOCIAL]['PASS'])
@@ -36,19 +36,19 @@ while True:
     browser.accept_flash_running()
 
 
-    # time.sleep(30)
-    # tutor.scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu)
-    # tutor.set_full_screen(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN)
+    time.sleep(30)
+    browser.scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu)
+    browser.set_full_screen(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN)
 
 
-    tutor.choose_nation(REGIONS_ON_WINDOW)
-    tutor.first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN)
-    tutor.quest_1(REGIONS_ON_FULL_SCREEN)
-    tutor.quest_2(REGIONS_ON_FULL_SCREEN)
-    tutor.quest_3(REGIONS_ON_FULL_SCREEN)
-    tutor.quest_4(REGIONS_ON_FULL_SCREEN)
-    tutor.quest_5(REGIONS_ON_FULL_SCREEN)
-    tutor.quest_6(REGIONS_ON_FULL_SCREEN)
+    # tutor.choose_nation(REGIONS_ON_WINDOW)
+    # tutor.first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN)
+    # tutor.quest_1(REGIONS_ON_FULL_SCREEN)
+    # tutor.quest_2(REGIONS_ON_FULL_SCREEN)
+    # tutor.quest_3(REGIONS_ON_FULL_SCREEN)
+    # tutor.quest_4(REGIONS_ON_FULL_SCREEN)
+    # tutor.quest_5(REGIONS_ON_FULL_SCREEN)
+    # tutor.quest_6(REGIONS_ON_FULL_SCREEN)
     tutor.quest_7(REGIONS_ON_FULL_SCREEN)
     tutor.quest_8(REGIONS_ON_FULL_SCREEN)
     tutor.quest_9(REGIONS_ON_FULL_SCREEN)
