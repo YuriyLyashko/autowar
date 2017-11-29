@@ -2,19 +2,13 @@ import datetime, time, logging
 
 import browser, tutor, wipe_user_progress
 
-from tutor_py_files import regions
+from tutor_py_files import regions, log
 from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_AUTH_INFO, SOC_NET_LINKS
 
 SOCIAL = 'FB'  # 'VK', 'FB'
 SERVER = 'FB'  # 'DM', 'FB'
 ID = SOC_AUTH_INFO[SOCIAL]['ID']
 
-
-logging.basicConfig(filename='tutor_log.log',
-                    level=logging.INFO,
-                    datefmt='%d/%m/%Y %I:%M:%S %p',
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-                    )
 
 # times = []
 n = 1

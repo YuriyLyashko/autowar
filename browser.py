@@ -1,14 +1,9 @@
 import pyautogui, time, datetime, os, logging
 from open_chrome import open_chrome
 from tutor_py_files.wrappers import else_click_to_help_arrow, print_time
+from tutor_py_files import log
 
 pyautogui.FAILSAFE = False
-
-logging.basicConfig(filename='tutor_log.log',
-                    level=logging.INFO,
-                    datefmt='%d/%m/%Y %I:%M:%S %p',
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-                    )
 
 
 

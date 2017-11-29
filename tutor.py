@@ -1,13 +1,9 @@
 import pyautogui, time, datetime, logging
 
 import browser
-from tutor_py_files import wrappers
+from tutor_py_files import wrappers, log
 
-logging.basicConfig(filename='tutor_log.log',
-                    level=logging.INFO,
-                    datefmt='%d/%m/%Y %I:%M:%S %p',
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-                    )
+
 
 @wrappers.print_time
 def choose_nation(REGIONS_ON_WINDOW):
