@@ -2,7 +2,7 @@ import datetime, time, logging
 
 import browser, tutor, wipe_user_progress
 
-from tutor_py_files import regions, log
+from tutor_py_files import regions, log_config
 from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_AUTH_INFO, SOC_NET_LINKS
 
 SOCIAL = 'FB'  # 'VK', 'FB'
@@ -15,7 +15,7 @@ n = 1
 while True:
     start_time = datetime.datetime.now()
     logging.info('\n\n\n          launch {}'.format(n))
-    logging.info('start_time {}'.format(start_time.strftime('%d/%m/%Y %H:%M:%S')))
+    logging.info('start')
 
 
     wipe_user_progress.wipe(SOCIAL, SERVER, ID)
@@ -59,10 +59,10 @@ while True:
 
     driver.quit()
     finish_time = datetime.datetime.now()
-    logging.info('finish_time {}'.format(finish_time.strftime('%d/%m/%Y %H:%M:%S')))
+    logging.info('finish')
     time_spent = finish_time - start_time
     logging.info('time_spent {}'.format(time_spent))
     # times.append(time_spent)
-    # print('average time:', sum(times)/len(times)
+    # logging.info('average time: {}'.format(sum(times)/len(times)))
 
     n+=1

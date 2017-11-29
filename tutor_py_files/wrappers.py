@@ -2,11 +2,6 @@ import datetime, re, logging
 
 import browser
 
-logging.basicConfig(filename='tutor_log.log',
-                    level=logging.INFO,
-                    datefmt='%d/%m/%Y %I:%M:%S %p',
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-                    )
 
 keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
                                       'kwargs': {'higher_on': 0,
@@ -24,9 +19,9 @@ keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
 
 def print_time(func):
     def wrapper(*args, **kwargs):
-        logging.info('{} started at {}'.format(func.__name__, datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
+        logging.info('{} started'.format(func.__name__))
         func(*args, **kwargs)
-        logging.info('{} finished at {}\n'.format(func.__name__, datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
+        logging.info('{} finished \n'.format(func.__name__))
     return wrapper
 
 def else_click_to_help_arrow(func):

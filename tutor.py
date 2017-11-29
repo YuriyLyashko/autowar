@@ -1,7 +1,7 @@
 import pyautogui, time, datetime, logging
 
 import browser
-from tutor_py_files import wrappers, log
+from tutor_py_files import wrappers, log_config
 
 
 
@@ -20,8 +20,7 @@ def choose_nation(REGIONS_ON_WINDOW):
                                                                  region=REGIONS_ON_WINDOW['right_mid'],
                                                                  grayscale=True
                                                                  )
-        logging.info('button_right_arrow_to_choose_nation {} {}'.format(button_right_arrow_to_choose_nation,
-                                                                           datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
+        logging.info('button_right_arrow_to_choose_nation {}'.format(button_right_arrow_to_choose_nation))
         if button_right_arrow_to_choose_nation:
             for i in range(10):
                 time.sleep(2)
@@ -29,8 +28,7 @@ def choose_nation(REGIONS_ON_WINDOW):
                                                 region=REGIONS_ON_WINDOW['center_down'],
                                                 grayscale=True
                                                 )
-                logging.info('usa_nation {} {}'.format(usa_nation,
-                                                       datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
+                logging.info('usa_nation {}'.format(usa_nation))
                 if usa_nation:
                     browser.click_to_center(button_choose_nation)
                     break
@@ -42,8 +40,7 @@ def choose_nation(REGIONS_ON_WINDOW):
                                                                 region=REGIONS_ON_WINDOW['left_mid'],
                                                                 grayscale=True
                                                                 )
-        logging.info('button_left_arrow_to_choose_nation'.format(button_left_arrow_to_choose_nation,
-                                                                 datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
+        logging.info('button_left_arrow_to_choose_nation {}'.format(button_left_arrow_to_choose_nation))
         if button_left_arrow_to_choose_nation:
             for i in range(10):
                 time.sleep(5)
@@ -51,7 +48,7 @@ def choose_nation(REGIONS_ON_WINDOW):
                                                 region=REGIONS_ON_WINDOW['center_down'],
                                                 grayscale=True
                                                 )
-                logging.info('usa_nation'.format(usa_nation, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
+                logging.info('usa_nation {}'.format(usa_nation))
                 if usa_nation:
                     browser.click_to_center(button_choose_nation)
                     break
@@ -326,7 +323,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                    region=REGIONS_ON_FULL_SCREEN['right_mid'],
                                    grayscale=True
                                    ):
-        print('way 1')
+        logging.info('way 1')
         '''find button_helth'''
         browser.find_flashing_image_and_click('button_helth.png',
                                               region=REGIONS_ON_FULL_SCREEN['right_mid'],
@@ -349,7 +346,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                               grayscale=True
                                               )
     else:
-        print('way 2')
+        logging.info('way 2')
         pyautogui.moveTo(5, 5, 1)
         '''click to button_continue'''
         browser.find_flashing_image_and_click('button_continue.png',
@@ -364,7 +361,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                                    grayscale=True
                                                    )
         if button_helth:
-            print('way 2.1')
+            logging.info('way 2.1')
             browser.click_to_center(button_helth)
             time.sleep(1)
             '''click to area_helth'''
@@ -375,13 +372,13 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                                   grayscale=True
                                                   )
         else:
-            print('way 2.2')
+            logging.info('way 2.2')
             help_arrow_right = browser.find_flashing_image('help_arrow_right.png',
                                                            region=REGIONS_ON_FULL_SCREEN['right_mid'],
                                                            grayscale=True
                                                            )
             if help_arrow_right:
-                print('way 2.2.1')
+                logging.info('way 2.2.1')
                 browser.click_to_center(help_arrow_right, righter_on=50)
 
                 time.sleep(1)
@@ -390,12 +387,12 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                                               grayscale=True
                                                               )
                 if help_arrow_down:
-                    print('way 2.2.1.1')
+                    logging.info('way 2.2.1.1')
                     '''click to area_helth'''
                     '''find help_arrow_down'''
                     browser.click_to_center(help_arrow_down, lower_on=100)
                 else:
-                    print('area_helth help_arrow_down is NOT finded')
+                    logging.info('area_helth help_arrow_down is NOT finded')
 
     time.sleep(20)
     pyautogui.moveTo(5, 5, 1)
@@ -405,7 +402,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                                  grayscale=True
                                                  )
     if quest_4_7_icon:
-        print('quest_4_7_icon is finded')
+        logging.info('quest_4_7_icon is finded')
         browser.click_to_center(quest_4_7_icon)
         time.sleep(2)
         '''find help_arrow_down'''
@@ -415,7 +412,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                               grayscale=True
                                               )
     else:
-        print('quest_4_7_icon is NOT finded')
+        logging.info('quest_4_7_icon is NOT finded')
         help_arrow_down = browser.find_flashing_image('help_arrow_down.png',
                                                       region=REGIONS_ON_FULL_SCREEN['center_down_menu'],
                                                       grayscale=True
