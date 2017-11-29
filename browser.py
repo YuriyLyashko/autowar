@@ -1,9 +1,18 @@
-import pyautogui, time, datetime, os
+import pyautogui, time, datetime, os, logging
 from open_chrome import open_chrome
 from tutor_py_files.wrappers import else_click_to_help_arrow, print_time
 
-
 pyautogui.FAILSAFE = False
+
+logging.basicConfig(filename='tutor_log.log',
+                    level=logging.INFO,
+                    datefmt='%d/%m/%Y %I:%M:%S %p',
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+                    )
+
+
+
+
 
 def find_image(image_name, **kwargs):
     for i in range(10):
@@ -30,7 +39,7 @@ def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
 def find_image_and_click(image_name, **kwargs):
     image = find_image(image_name, **kwargs)
     if not image: pyautogui.alert("{} doesn't find".format(image_name))
-    print(image_name, image, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
+    logging.INFO('{} {} {}'.format(image_name, image, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
     if image:
         click_to_center(image)
         return True
@@ -42,15 +51,15 @@ def find_flashing_image_and_click(image_name,
     # print('find_flashing_image_and_click')
     image = find_flashing_image(image_name, **kwargs)
     if not image: pyautogui.alert("{} doesn't find".format(image_name))
-    print(image_name, image, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
+    logging.ERROR('{} {} {}'.format(image_name, image, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
     if image:
         click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
 
-def set_full_screen(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
+def set_full_screen(REGIONS_ON_WINDOW):
     pyautogui.moveTo(5, 5, 1)
     time.sleep(2)
     '''click to button_full_screen_game_top'''
-    find_image_and_click('button_full_screen_game_top.png',
+    find_image_and_click('quest_menu__button_full_screen_game_top.png',
                          region=REGIONS_ON_WINDOW['center_up'],
                          grayscale=True
                          )

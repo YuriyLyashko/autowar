@@ -1,4 +1,5 @@
-import os, datetime, time, unittest, pyautogui, warnings
+import os, datetime, time, unittest, pyautogui, warnings, HtmlTestRunner
+from xmlrunner import xmlrunner
 
 from open_chrome import open_chrome
 from authentication_info import SOC_AUTH_INFO, SOC_NET_LINKS
@@ -73,7 +74,6 @@ class ScreenTests(unittest.TestCase):
             self.get_screen()
             raise ValueError("isn't fiding button_faq")
 
-
     def test_community_screen(self):
         ''''''
         '''find button_community'''
@@ -94,6 +94,7 @@ class ScreenTests(unittest.TestCase):
             raise ValueError("isn't fiding button_community")
         pyautogui.hotkey('ctrl', 'w')
 
+    @unittest.skip('I skipped it')
     def test_add_gold_screen(self):
         ''''''
         '''get screen resolution size'''
@@ -133,4 +134,8 @@ class ScreenTests(unittest.TestCase):
         self.driver.close()
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='C:\Jen', report_title='There is autotesting, MF'), verbosity=2)
+
+    # search_tests = unittest.TestLoader().loadTestsFromTestCase(ScreenTests)
+    # smoke_tests = unittest.TestSuite([search_tests, ])
+    # xmlrunner.XMLTestRunner(verbosity=2, output='test-rep123').run(smoke_tests)

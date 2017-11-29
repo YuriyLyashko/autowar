@@ -1,12 +1,19 @@
-import pyautogui
-import time, datetime
+import pyautogui, time, datetime, logging
+
 import browser
 from tutor_py_files import wrappers
 
+logging.basicConfig(filename='tutor_log.log',
+                    level=logging.INFO,
+                    datefmt='%d/%m/%Y %I:%M:%S %p',
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+                    )
+
+logging.info('\n\ntutor_started')
 
 @wrappers.print_time
 def choose_nation(REGIONS_ON_WINDOW):
-    '''1.choose nation'''
+    logging.info('''1.choose nation''')
     time.sleep(30)
     pyautogui.moveTo(pyautogui.center(REGIONS_ON_WINDOW['center_mid']), duration=1)
     button_choose_nation = browser.find_flashing_image('button_choose_nation.png',
@@ -14,12 +21,13 @@ def choose_nation(REGIONS_ON_WINDOW):
                                                        grayscale=True
                                                        )
     if button_choose_nation:
-        '''1.1 scroll nation right'''
+        logging.info('''1.1 scroll nation right''')
         button_right_arrow_to_choose_nation = browser.find_image('right_arrow_to_choose_nation.png',
                                                                  region=REGIONS_ON_WINDOW['right_mid'],
                                                                  grayscale=True
                                                                  )
-        print('button_right_arrow_to_choose_nation', button_right_arrow_to_choose_nation, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
+        logging.info('button_right_arrow_to_choose_nation {} {}'.format(button_right_arrow_to_choose_nation,
+                                                                           datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
         if button_right_arrow_to_choose_nation:
             for i in range(10):
                 time.sleep(2)
@@ -27,19 +35,21 @@ def choose_nation(REGIONS_ON_WINDOW):
                                                 region=REGIONS_ON_WINDOW['center_down'],
                                                 grayscale=True
                                                 )
-                print('usa_nation', usa_nation, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
+                logging.info('usa_nation {} {}'.format(usa_nation,
+                                                       datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
                 if usa_nation:
                     browser.click_to_center(button_choose_nation)
                     break
                 browser.click_to_center(button_right_arrow_to_choose_nation)
 
-        '''1.2 scroll nation left'''
+        logging.info('''1.2 scroll nation left''')
         time.sleep(5)
         button_left_arrow_to_choose_nation = browser.find_image('left_arrow_to_choose_nation.png',
                                                                 region=REGIONS_ON_WINDOW['left_mid'],
                                                                 grayscale=True
                                                                 )
-        print('button_left_arrow_to_choose_nation', button_left_arrow_to_choose_nation, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
+        logging.info('button_left_arrow_to_choose_nation'.format(button_left_arrow_to_choose_nation,
+                                                                 datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
         if button_left_arrow_to_choose_nation:
             for i in range(10):
                 time.sleep(5)
@@ -47,7 +57,7 @@ def choose_nation(REGIONS_ON_WINDOW):
                                                 region=REGIONS_ON_WINDOW['center_down'],
                                                 grayscale=True
                                                 )
-                print('usa_nation', usa_nation, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
+                logging.info('usa_nation'.format(usa_nation, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
                 if usa_nation:
                     browser.click_to_center(button_choose_nation)
                     break
@@ -708,17 +718,14 @@ def quest_7(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(1)
     '''find quest_7_5_icon'''
-    quest_7_5_icon = browser.find_flashing_image('quest_7_5_icon.png',
-                                                 region=REGIONS_ON_FULL_SCREEN['center_down'],
-                                                 grayscale=True
-                                                 )
-    if quest_7_5_icon:
-        browser.click_to_center(quest_7_5_icon)
-    else:
-        browser.find_flashing_image_and_click('quest_7_5_icon.png',
-                                              region=REGIONS_ON_FULL_SCREEN['center_mid'],
-                                              grayscale=True
-                                              )
+    for region in ('center_down', 'center_mid', 'leftt_down'):
+        quest_7_5_icon = browser.find_flashing_image('quest_7_5_icon.png',
+                                                     region=REGIONS_ON_FULL_SCREEN[region],
+                                                     grayscale=True
+                                                     )
+        if quest_7_5_icon:
+            browser.click_to_center(quest_7_5_icon)
+            break
 
     time.sleep(25)
     '''click to button_ok'''

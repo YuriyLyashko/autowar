@@ -9,9 +9,6 @@ from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_AUTH_INFO, SOC_NET_
 
 
 def wipe(SOCIAL, SERVER, ID):
-    # SOCIAL = 'FB'  # 'VK', 'FB'
-    # SERVER = 'FB'  # 'DM', 'FB'
-    # ID = SOC_AUTH_INFO[SOCIAL]['ID']
     '''open chrome'''
     driver = open_chrome()
     driver.implicitly_wait(30)
@@ -59,3 +56,10 @@ def wipe(SOCIAL, SERVER, ID):
         # pass
 
 
+
+
+if __name__ == '__main__':
+    SOCIAL = 'FB'  # 'VK', 'FB'
+    SERVER = 'FB'  # 'DM', 'FB'
+    ID = SOC_AUTH_INFO[SOCIAL]['ID']
+    wipe(SOCIAL, SERVER, ID)
