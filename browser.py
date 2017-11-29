@@ -51,7 +51,7 @@ def find_flashing_image_and_click(image_name,
     # print('find_flashing_image_and_click')
     image = find_flashing_image(image_name, **kwargs)
     if not image: pyautogui.alert("{} doesn't find".format(image_name))
-    logging.ERROR('{} {} {}'.format(image_name, image, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
+    logging.info('{} {} {}'.format(image_name, image, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S')))
     if image:
         click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
 

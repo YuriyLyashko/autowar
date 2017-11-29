@@ -24,9 +24,9 @@ keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
 
 def print_time(func):
     def wrapper(*args, **kwargs):
-        print('{} started at {}'.format(func.__name__, datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
-        func(*args)
-        print('{} finished at {}\n'.format(func.__name__, datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
+        logging.info('{} started at {}'.format(func.__name__, datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
+        func(*args, **kwargs)
+        logging.info('{} finished at {}\n'.format(func.__name__, datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
     return wrapper
 
 def else_click_to_help_arrow(func):

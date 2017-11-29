@@ -1,4 +1,4 @@
-import datetime, time
+import datetime, time, logging
 
 import browser, tutor, wipe_user_progress
 
@@ -9,12 +9,19 @@ SOCIAL = 'FB'  # 'VK', 'FB'
 SERVER = 'FB'  # 'DM', 'FB'
 ID = SOC_AUTH_INFO[SOCIAL]['ID']
 
+
+logging.basicConfig(filename='tutor_log.log',
+                    level=logging.INFO,
+                    datefmt='%d/%m/%Y %I:%M:%S %p',
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+                    )
+
 # times = []
 n = 1
 while True:
     start_time = datetime.datetime.now()
-    print('\n\n\n          launch №', n)
-    print('start_time', start_time.strftime('%d/%m/%Y %H:%M:%S'))
+    logging.info('\n\n\n          launch {}'.format(n))
+    logging.info('start_time {}'.format(start_time.strftime('%d/%m/%Y %H:%M:%S')))
 
 
     wipe_user_progress.wipe(SOCIAL, SERVER, ID)
@@ -58,9 +65,9 @@ while True:
 
     driver.quit()
     finish_time = datetime.datetime.now()
-    print('finish_time', finish_time.strftime('%d/%m/%Y %H:%M:%S'))
+    logging.info('finish_time {}'.format(finish_time.strftime('%d/%m/%Y %H:%M:%S')))
     time_spent = finish_time - start_time
-    print('time_spent', time_spent)
+    logging.info('time_spent {}'.format(time_spent))
     # times.append(time_spent)
     # print('average time:', sum(times)/len(times)
 

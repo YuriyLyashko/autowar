@@ -9,8 +9,6 @@ logging.basicConfig(filename='tutor_log.log',
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
                     )
 
-logging.info('\n\ntutor_started')
-
 @wrappers.print_time
 def choose_nation(REGIONS_ON_WINDOW):
     logging.info('''1.choose nation''')
