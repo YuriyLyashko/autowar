@@ -1,7 +1,7 @@
 import pyautogui, time, datetime, logging
 
 import browser
-from tutor_py_files import wrappers, log_config
+from tutor_py_files import wrappers
 
 
 

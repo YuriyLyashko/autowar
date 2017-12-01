@@ -6,7 +6,13 @@ pyautogui.FAILSAFE = False
 
 
 
-
+def get_screen():
+    for _ in range(10):
+        coord = pyautogui.screenshot('{}{}{}'.format(os.getcwd(),
+                                                     '\\screens\\tutor\\',
+                                                     '{}.png'.format(datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S')))
+                                     )
+        time.sleep(10)
 
 def find_image(image_name, **kwargs):
     for i in range(10):
@@ -28,7 +34,7 @@ def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
     pyautogui.click()
 
 
-@else_click_to_help_arrow
+# @else_click_to_help_arrow
 @print_time
 def find_image_and_click(image_name, **kwargs):
     image = find_image(image_name, **kwargs)
@@ -48,6 +54,7 @@ def find_flashing_image_and_click(image_name,
     image = find_flashing_image(image_name, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
+        get_screen()
         pyautogui.alert("{} doesn't find".format(image_name))
     logging.info('{} {}'.format(image_name, image))
     if image:
@@ -110,3 +117,8 @@ def accept_flash_running():
     button_accept_flash_running = find_flashing_image('accept_flash_running.png')
     if button_accept_flash_running:
         click_to_center(button_accept_flash_running)
+
+
+
+
+
