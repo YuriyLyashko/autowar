@@ -59,7 +59,6 @@ class ScreenTests(unittest.TestCase):
             self.get_screen()
             raise ValueError("isn't fiding button_inv_friend")
 
-
     def test_faq_screen(self):
         ''''''
         '''find button_faq'''

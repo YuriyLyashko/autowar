@@ -12,7 +12,7 @@ def get_screen():
                                                      '\\screens\\tutor\\',
                                                      '{}.png'.format(datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S')))
                                      )
-        time.sleep(10)
+        time.sleep(5)
 
 def find_image(image_name, **kwargs):
     for i in range(10):
@@ -117,8 +117,3 @@ def accept_flash_running():
     button_accept_flash_running = find_flashing_image('accept_flash_running.png')
     if button_accept_flash_running:
         click_to_center(button_accept_flash_running)
-
-
-
-
-

@@ -3,11 +3,11 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
 
 from open_chrome import open_chrome
-from authentication_info import ADMIN_LOGIN, ADMIN_PASS
+from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_NET_LINKS, SOC_AUTH_INFO
 
-SOCIAL = 'VK' # 'VK','RBK'
-SERVER = 'DM' # 'DM', 'FB'
-ID = '379311451' # '379311451', '157894037991659'
+SOCIAL = 'FB' # 'VK','RBK'
+SERVER = 'FB' # 'DM', 'FB'
+ID = SOC_AUTH_INFO[SOCIAL]['ID']
 
 
 '''open chrome'''
@@ -16,7 +16,7 @@ driver.implicitly_wait(30)
 
 '''go to admin panel'''
 driver.maximize_window()
-driver.get('https://empire.islandsville.com/admin/')
+driver.get(SOC_NET_LINKS['ADM'])
 
 '''login'''
 driver.find_element_by_id('YumUserLogin_username').send_keys(ADMIN_LOGIN)

@@ -62,6 +62,7 @@ while True:
     logging.info('finish')
     time_spent = finish_time - start_time
     logging.info('time_spent {}'.format(time_spent))
+    time.sleep(5)
     # times.append(time_spent)
     # logging.info('average time: {}'.format(sum(times)/len(times)))
 
