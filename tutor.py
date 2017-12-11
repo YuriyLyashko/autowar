@@ -711,14 +711,16 @@ def quest_7(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(1)
     '''find quest_7_5_icon'''
-    for region in ('center_down', 'center_mid', 'left_down', 'right_down'):
-        quest_7_5_icon = browser.find_flashing_image('quest_7_5_icon.png',
-                                                     region=REGIONS_ON_FULL_SCREEN[region],
-                                                     grayscale=True
-                                                     )
-        if quest_7_5_icon:
-            browser.click_to_center(quest_7_5_icon)
-            break
+    browser.multi_region_search_and_click('quest_7_5_icon.png', REGIONS_ON_FULL_SCREEN)
+
+    # for region in ('center_down', 'center_mid', 'left_down', 'right_down'):
+    #     quest_7_5_icon = browser.find_flashing_image('quest_7_5_icon.png',
+    #                                                  region=REGIONS_ON_FULL_SCREEN[region],
+    #                                                  grayscale=True
+    #                                                  )
+    #     if quest_7_5_icon:
+    #         browser.click_to_center(quest_7_5_icon)
+    #         break
 
     time.sleep(25)
     '''click to button_ok'''
