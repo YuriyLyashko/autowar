@@ -10,7 +10,7 @@ print('cpu_cout', cpu_cout)
 
 
 def go_1(img):
-    print('{}'.format(datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
+    # print('{}'.format(datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
     # s = datetime.datetime.now()
     result = find_image(img)
     # print(result)
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     s = datetime.datetime.now()
 
     with Pool(len(imgs)) as p:
-        for i in p.imap_unordered(go_1, imgs):
+        for i in p.imap_unordered(find_image, imgs):
             print(i)
             if i:
                 p.terminate()

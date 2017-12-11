@@ -1,4 +1,5 @@
 import pyautogui, time, datetime, os, logging
+from multiprocessing import Pool
 from open_chrome import open_chrome
 from tutor_py_files.wrappers import else_click_to_help_arrow, print_time
 
@@ -28,6 +29,17 @@ def find_flashing_image(image_name, **kwargs):
             return coord
     return None
 
+def region_search(come):
+    image_name, region = come
+    for i in range(1000):
+        coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name),
+                                         grayscale=True,
+                                         region=region)
+        if coord:
+            return coord
+    return None
+
+
 def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
     x, y = pyautogui.center(button)
     pyautogui.moveTo(x=x+righter_on-lefter_on, y=y+lower_on-higher_on, duration=0.5)
@@ -41,7 +53,7 @@ def find_image_and_click(image_name, **kwargs):
     if not image:
         logging.error("{} doesn't find".format(image_name))
         pyautogui.alert("{} doesn't find".format(image_name))
-    logging.INFO('{} {}'.format(image_name, image))
+    logging.info('{} {}'.format(image_name, image))
     if image:
         click_to_center(image)
         return True
@@ -59,6 +71,34 @@ def find_flashing_image_and_click(image_name,
     logging.info('{} {}'.format(image_name, image))
     if image:
         click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
+
+def multi_region_search_and_click(image_name,
+                                  regions,
+                                  higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
+                                  **kwargs):
+    logging.info('{}'.format('multi_region_search_and_click'))
+    with Pool(5) as pool:
+        for image in pool.imap_unordered(region_search, ((image_name, regions['left_up']),
+                                                         (image_name, regions['left_down']),
+                                                         (image_name, regions['center_mid']),
+                                                         (image_name, regions['right_up']),
+                                                         (image_name, regions['right_down'])
+                                                         )
+                                         ):
+            logging.info('{} {}'.format(image_name, image))
+            if image:
+                click_to_center(image,
+                                higher_on=higher_on,
+                                lower_on=lower_on,
+                                righter_on=righter_on,
+                                lefter_on=lefter_on)
+                pool.terminate()
+                break
+            else:
+                logging.error("{} doesn't find".format(image_name))
+                get_screen()
+                pyautogui.alert("{} doesn't find".format(image_name))
+
 
 def set_full_screen(REGIONS_ON_WINDOW):
     logging.info('set_full_screen')
