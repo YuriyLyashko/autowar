@@ -5,7 +5,7 @@ from tutor_py_files import wrappers
 
 
 
-@wrappers.print_time
+@wrappers.log_time
 def choose_nation(REGIONS_ON_WINDOW):
     logging.info('''1.choose nation''')
     time.sleep(30)
@@ -13,9 +13,9 @@ def choose_nation(REGIONS_ON_WINDOW):
     button_choose_nation = browser.find_flashing_image('button_choose_nation.png', region=REGIONS_ON_WINDOW['center_down'])
     if button_choose_nation:
         logging.info('''1.1 scroll nation right''')
-        button_right_arrow_to_choose_nation = browser.find_image('right_arrow_to_choose_nation.png',
-                                                                 region=REGIONS_ON_WINDOW['right_mid']
-                                                                 )
+        button_right_arrow_to_choose_nation = browser.find_flashing_image('right_arrow_to_choose_nation.png',
+                                                                          region=REGIONS_ON_WINDOW['right_mid']
+                                                                          )
         logging.info('button_right_arrow_to_choose_nation {}'.format(button_right_arrow_to_choose_nation))
         if button_right_arrow_to_choose_nation:
             for i in range(10):
@@ -29,9 +29,9 @@ def choose_nation(REGIONS_ON_WINDOW):
 
         logging.info('''1.2 scroll nation left''')
         time.sleep(5)
-        button_left_arrow_to_choose_nation = browser.find_image('left_arrow_to_choose_nation.png',
-                                                                region=REGIONS_ON_WINDOW['left_mid']
-                                                                )
+        button_left_arrow_to_choose_nation = browser.find_flashing_image('left_arrow_to_choose_nation.png',
+                                                                         region=REGIONS_ON_WINDOW['left_mid']
+                                                                         )
         logging.info('button_left_arrow_to_choose_nation {}'.format(button_left_arrow_to_choose_nation))
         if button_left_arrow_to_choose_nation:
             for i in range(10):
@@ -43,12 +43,16 @@ def choose_nation(REGIONS_ON_WINDOW):
                     break
                 browser.click_to_center(button_left_arrow_to_choose_nation)
 
-@wrappers.print_time
+
+
+@wrappers.log_time
 def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
     time.sleep(20)
+
     pyautogui.moveTo(5, 5, 1)
-    '''click to button_full_screen_game'''
-    browser.monoregion_multisearch_and_click('button_full_screen_game.png', region=REGIONS_ON_WINDOW['right_down'])
+    if browser.find_flashing_image('button_to_battle.png', region=REGIONS_ON_FULL_SCREEN['center_up']):
+        '''click to button_full_screen_game'''
+        browser.monoregion_multisearch_and_click('button_full_screen_game.png', region=REGIONS_ON_WINDOW['right_down'])
 
     time.sleep(10)
     pyautogui.moveTo(5, 5, 1)
@@ -81,7 +85,7 @@ def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
     '''click to button_continue'''
     browser.monoregion_multisearch_and_click('button_continue.png', region=REGIONS_ON_FULL_SCREEN['center_mid'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_1(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     '''quest №1 "пекарь"'''
@@ -99,7 +103,7 @@ def quest_1(REGIONS_ON_FULL_SCREEN):
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png', region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_2(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -131,7 +135,7 @@ def quest_2(REGIONS_ON_FULL_SCREEN):
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png', region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_3(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -156,7 +160,7 @@ def quest_3(REGIONS_ON_FULL_SCREEN):
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png', region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_4(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -292,7 +296,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png', region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_5(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -320,7 +324,7 @@ def quest_5(REGIONS_ON_FULL_SCREEN):
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png', region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_6(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -382,7 +386,7 @@ def quest_6(REGIONS_ON_FULL_SCREEN):
     '''click to button_continue'''
     browser.monoregion_multisearch_and_click('button_continue.png', region=REGIONS_ON_FULL_SCREEN['center_mid'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_7(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -476,7 +480,7 @@ def quest_7(REGIONS_ON_FULL_SCREEN):
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png', region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_8(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -503,7 +507,7 @@ def quest_8(REGIONS_ON_FULL_SCREEN):
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png', region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_9(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -539,7 +543,7 @@ def quest_9(REGIONS_ON_FULL_SCREEN):
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png', region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.print_time
+@wrappers.log_time
 def quest_10(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)

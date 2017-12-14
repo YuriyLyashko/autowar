@@ -17,7 +17,7 @@ keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
                        'battle_icon': ()
 }
 
-def print_time(func):
+def log_time(func):
     def wrapper(*args, **kwargs):
         logging.info('{} started'.format(func.__name__))
         func(*args, **kwargs)

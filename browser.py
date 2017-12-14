@@ -1,7 +1,7 @@
 import pyautogui, time, datetime, os, logging
 from multiprocessing import Pool
 from open_chrome import open_chrome
-from tutor_py_files.wrappers import else_click_to_help_arrow, print_time
+from tutor_py_files.wrappers import else_click_to_help_arrow, log_time
 
 pyautogui.FAILSAFE = False
 
@@ -32,7 +32,6 @@ def find_flashing_image(image_name, **kwargs):
     return None
 
 def monosearch(come):
-    print('monosearch', come)
     image_name, region = come
     for i in range(1000):
         coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name),
@@ -49,7 +48,7 @@ def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
     pyautogui.click()
 
 # @else_click_to_help_arrow
-@print_time
+@log_time
 def find_image_and_click(image_name, **kwargs):
     image = find_image(image_name, **kwargs)
     if not image:
@@ -80,7 +79,6 @@ def monoregion_multisearch_and_click(image_name,
                                      **kwargs
                                      ):
     logging.info('{}'.format('monoregion_multisearch_and_click'))
-    print(os.cpu_count())
     with Pool(os.cpu_count()) as pool:
         for image in pool.imap_unordered(monosearch, [(image_name, region) for _ in range(os.cpu_count())]):
             logging.info('{} {}'.format(image_name, image))
@@ -92,10 +90,10 @@ def monoregion_multisearch_and_click(image_name,
                                 lefter_on=lefter_on)
                 pool.terminate()
                 break
-            else:
-                logging.error("{} doesn't find".format(image_name))
-                get_screen()
-                pyautogui.alert("{} doesn't find".format(image_name))
+    if not image:
+        logging.error("{} doesn't find".format(image_name))
+        get_screen()
+        pyautogui.alert("{} doesn't find".format(image_name))
 
 
 def multiregion_monosearch_and_click(image_name,
@@ -120,10 +118,10 @@ def multiregion_monosearch_and_click(image_name,
                                 lefter_on=lefter_on)
                 pool.terminate()
                 break
-            else:
-                logging.error("{} doesn't find".format(image_name))
-                get_screen()
-                pyautogui.alert("{} doesn't find".format(image_name))
+    if not image:
+        logging.error("{} doesn't find".format(image_name))
+        get_screen()
+        pyautogui.alert("{} doesn't find".format(image_name))
 
 
 def set_full_screen(REGIONS_ON_WINDOW):
