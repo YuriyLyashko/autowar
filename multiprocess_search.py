@@ -1,7 +1,7 @@
 import datetime, os
 from multiprocessing import Pool
 
-from browser import find_image
+from browser import fast_search
 
 cpu_cout = os.cpu_count()
 print('cpu_cout', cpu_cout)
@@ -12,7 +12,7 @@ print('cpu_cout', cpu_cout)
 def go_1(img):
     # print('{}'.format(datetime.datetime.now().strftime('%d/%m/%Y__%H:%M:%S')))
     # s = datetime.datetime.now()
-    result = find_image(img)
+    result = fast_search(img)
     # print(result)
     # f = datetime.datetime.now()
     # print('go_1', f - s, '\n')
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     s = datetime.datetime.now()
 
     with Pool(len(imgs)) as p:
-        for i in p.imap_unordered(find_image, imgs):
+        for i in p.imap_unordered(fast_search, imgs):
             print(i)
             if i:
                 p.terminate()

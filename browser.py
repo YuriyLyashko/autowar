@@ -15,14 +15,14 @@ def get_screen():
                                      )
         time.sleep(5)
 
-def find_image(image_name, **kwargs):
+def fast_search(image_name, **kwargs):
     for i in range(10):
         coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name), **kwargs)
         if coord:
             return coord
     return None
 
-def find_flashing_image(image_name, **kwargs):
+def persistent_search(image_name, **kwargs):
     for i in range(1000):
         coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name),
                                          grayscale=True,
@@ -41,16 +41,8 @@ def monosearch(come):
             return coord
     return None
 
-
-def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
-    x, y = pyautogui.center(button)
-    pyautogui.moveTo(x=x+righter_on-lefter_on, y=y+lower_on-higher_on, duration=0.5)
-    pyautogui.click()
-
-# @else_click_to_help_arrow
-@log_time
 def find_image_and_click(image_name, **kwargs):
-    image = find_image(image_name, **kwargs)
+    image = fast_search(image_name, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
         pyautogui.alert("{} doesn't find".format(image_name))
@@ -64,7 +56,7 @@ def find_flashing_image_and_click(image_name,
                                   higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
                                   **kwargs):
     logging.info('find_flashing_image_and_click')
-    image = find_flashing_image(image_name, **kwargs)
+    image = persistent_search(image_name, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
         get_screen()
@@ -95,7 +87,6 @@ def monoregion_multisearch_and_click(image_name,
         get_screen()
         pyautogui.alert("{} doesn't find".format(image_name))
 
-
 def multiregion_monosearch_and_click(image_name,
                                      regions,
                                      higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
@@ -123,6 +114,10 @@ def multiregion_monosearch_and_click(image_name,
         get_screen()
         pyautogui.alert("{} doesn't find".format(image_name))
 
+def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
+    x, y = pyautogui.center(button)
+    pyautogui.moveTo(x=x+righter_on-lefter_on, y=y+lower_on-higher_on, duration=0.5)
+    pyautogui.click()
 
 def set_full_screen(REGIONS_ON_WINDOW):
     logging.info('set_full_screen')
@@ -175,9 +170,9 @@ def click_to_game_area(width_top_menu, left_coord_top_menu, top_coord_top_menu, 
     time.sleep(2)
     pyautogui.click(x=width_top_menu - left_coord_top_menu, y=top_coord_top_menu + height_screen / 2)
 
-def accept_flash_running():
+def accept_flash_running(region):
     logging.info('''accept flash running''')
     time.sleep(0.5)
-    button_accept_flash_running = find_flashing_image('accept_flash_running.png')
+    button_accept_flash_running = persistent_search('accept_flash_running.png', region=region)
     if button_accept_flash_running:
         click_to_center(button_accept_flash_running)
