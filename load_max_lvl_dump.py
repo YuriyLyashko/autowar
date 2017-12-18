@@ -2,7 +2,7 @@ import re, time
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
 
-from open_chrome import open_chrome
+from browser import open_browser
 from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_NET_LINKS, SOC_AUTH_INFO
 
 SOCIAL = 'FB' # 'VK','RBK'
@@ -11,8 +11,7 @@ ID = SOC_AUTH_INFO[SOCIAL]['ID']
 
 
 '''open chrome'''
-driver = open_chrome()
-driver.implicitly_wait(30)
+driver = open_browser()
 
 '''go to admin panel'''
 driver.maximize_window()

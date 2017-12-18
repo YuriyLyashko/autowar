@@ -1,6 +1,6 @@
 import pyautogui, time, datetime, os, logging
 from multiprocessing import Pool
-from open_chrome import open_chrome
+from selenium import webdriver
 from tutor_py_files.wrappers import else_click_to_help_arrow, log_time
 
 pyautogui.FAILSAFE = False
@@ -138,8 +138,8 @@ def scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu):
 
 
 def open_browser():
-    logging.info('''open chrome''')
-    driver = open_chrome()
+    logging.info('''open open_browser''')
+    driver = webdriver.Chrome('{}\chromedriver.exe'.format(os.path.dirname(__file__)))
     driver.implicitly_wait(30)
     driver.maximize_window()
     return driver

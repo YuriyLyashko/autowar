@@ -3,15 +3,14 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
 import time
 
-from open_chrome import open_chrome
+from browser import open_browser
 from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_AUTH_INFO, SOC_NET_LINKS
 
 
 
 def wipe(SOCIAL, SERVER, ID):
     '''open chrome'''
-    driver = open_chrome()
-    driver.implicitly_wait(30)
+    driver = open_browser()
 
     '''go to admin panel'''
     driver.maximize_window()

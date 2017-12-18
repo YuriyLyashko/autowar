@@ -7,7 +7,7 @@ from authentication_info import SOC_AUTH_INFO, SOC_NET_LINKS
 
 SOCIAL = 'FB'
 
-class ScreenTests(unittest.TestCase):
+class TopMenuTests(unittest.TestCase):
     def get_screen(self):
         for i in range(10):
             pyautogui.screenshot('{}{}{}'.format(os.getcwd(),
@@ -50,8 +50,8 @@ class ScreenTests(unittest.TestCase):
         '''go to game page'''
         browser.go_to_social_network(self.driver, SOC_NET_LINKS[SOCIAL])
 
-    @unittest.skip('I have skipped it')
-    def test_invite_friends_screen(self):
+    # @unittest.skip('I have skipped it')
+    def test_invite_friends(self):
         ''''''
         '''find button_button_inv_friend'''
         self.button_button_inv_friend = self.find_image('button_inv_friend.png')
@@ -64,8 +64,8 @@ class ScreenTests(unittest.TestCase):
             self.get_screen()
             raise ValueError("isn't fiding button_inv_friend")
 
-    @unittest.skip('I have skipped it')
-    def test_faq_screen(self):
+    # @unittest.skip('I have skipped it')
+    def test_faq(self):
         ''''''
         '''find button_faq'''
         self.button_faq = self.find_image('button_faq.png')
@@ -79,8 +79,8 @@ class ScreenTests(unittest.TestCase):
             self.get_screen()
             raise ValueError("isn't fiding button_faq")
 
-    @unittest.skip('I have skipped it')
-    def test_community_screen(self):
+    # @unittest.skip('I have skipped it')
+    def test_community(self):
         ''''''
         '''find button_community'''
         self.button_community = self.find_image('button_community.png')
@@ -100,10 +100,11 @@ class ScreenTests(unittest.TestCase):
         else:
             self.get_screen()
             raise ValueError("isn't fiding button_community")
+
         # pyautogui.hotkey('ctrl', 'w')
 
     # @unittest.skip('I have skipped it')
-    def test_add_gold_screen(self):
+    def test_add_gold(self):
         ''''''
         '''get screen resolution size'''
         width_screen, height_screen = pyautogui.size()
@@ -141,7 +142,7 @@ class ScreenTests(unittest.TestCase):
         #         if im:
         #             self.assertTrue(im)
         #             break
-        self.find_image('sample_add_gold_action_window.png') or self.find_image('sample_add_gold_window.png'))
+        self.assertTrue(self.find_image('sample_add_gold_action_window.png') or self.find_image('sample_add_gold_window.png'))
 
 
 
@@ -170,6 +171,6 @@ if __name__ == "__main__":
     for _ in range(10):
         unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='C:\Jen', report_title='There is autotesting, MF'), verbosity=2)
 
-    # search_tests = unittest.TestLoader().loadTestsFromTestCase(ScreenTests)
+    # search_tests = unittest.TestLoader().loadTestsFromTestCase(TopMenuTests)
     # smoke_tests = unittest.TestSuite([search_tests, ])
     # xmlrunner.XMLTestRunner(verbosity=2, output='test-rep123').run(smoke_tests)
