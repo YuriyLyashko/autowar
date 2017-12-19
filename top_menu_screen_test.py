@@ -30,8 +30,6 @@ class TopMenuTests(unittest.TestCase):
         x, y = pyautogui.center(button)
         pyautogui.click(x=x, y=y)
 
-
-
     def setUp(self):
         ''''''
         '''ignore insides warnings'''
@@ -49,6 +47,9 @@ class TopMenuTests(unittest.TestCase):
 
         '''go to game page'''
         browser.go_to_social_network(self.driver, SOC_NET_LINKS[SOCIAL])
+
+    def tearDown(self):
+        self.driver.quit()
 
     # @unittest.skip('I have skipped it')
     def test_invite_friends(self):
@@ -110,8 +111,7 @@ class TopMenuTests(unittest.TestCase):
         width_screen, height_screen = pyautogui.size()
 
         '''find game's top menu'''
-        top_menu_location = self.find_image('top_menu.png')
-        left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = top_menu_location
+        left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = self.find_image('top_menu.png')
 
         '''scroll down'''
         self.driver.execute_script('scroll({},{});'.format(left_coord_top_menu, top_coord_top_menu - 150))
@@ -137,17 +137,14 @@ class TopMenuTests(unittest.TestCase):
         self.click_to_center(self.button_add_gold)
 
         '''check image'''
-        # with Pool(2) as pool:
-        #     for im in pool.imap_unordered(self.find_image, ['sample_add_gold_action_window.png', 'sample_add_gold_window.png']):
-        #         if im:
-        #             self.assertTrue(im)
+        # with Pool(2) as p:
+        #     for image in p.imap_unordered(self.find_image, ('sample_add_gold_window.png', )):
+        #         if image:
+        #             self.assertTrue(image)
         #             break
         self.assertTrue(self.find_image('sample_add_gold_action_window.png') or self.find_image('sample_add_gold_window.png'))
 
-
-
-
-
+    # @unittest.skip('I have skipped it')
     def test_language_select(self):
         ''''''
         '''find language_select'''
@@ -161,11 +158,68 @@ class TopMenuTests(unittest.TestCase):
             time.sleep(5)
             self.assertTrue(self.find_image('list_of_languages.png'))
 
+class LocalesTests(unittest.TestCase):
+    def setUp(self):
+        ''''''
+        '''ignore insides warnings'''
+        warnings.simplefilter("ignore", ResourceWarning)
+        warnings.simplefilter("ignore", DeprecationWarning)
 
+        '''open chrome'''
+        self.driver = browser.open_browser()
 
+        '''go to social network'''
+        browser.go_to_social_network(self.driver, SOC_NET_LINKS[SOCIAL])
+
+        '''login'''
+        browser.login(self.driver, SOC_AUTH_INFO[SOCIAL]['LOGIN'], SOC_AUTH_INFO[SOCIAL]['PASS'])
+
+        '''go to game page'''
+        browser.go_to_social_network(self.driver, SOC_NET_LINKS[SOCIAL])
 
     def tearDown(self):
         self.driver.quit()
+
+    def get_screen(self):
+        for i in range(10):
+            pyautogui.screenshot('{}{}{}'.format(os.getcwd(),
+                                                 '\\screens\\friends\\',
+                                                 '{}_{}.png'.format(self, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
+                                                 )
+                                 )
+
+    def find_image(self, image_name, **kwargs):
+        for i in range(10):
+            coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\friends\\samples\\', image_name),
+                                             # grayscale=True,
+                                             **kwargs
+                                             )
+            if coord:
+                return coord
+        return None
+
+    def click_to_center(self, button):
+        x, y = pyautogui.center(button)
+        pyautogui.click(x=x, y=y)
+
+    # @unittest.skip('I have skipped it')
+    def test_invite_friends(self):
+        ''''''
+        '''find button_button_inv_friend'''
+        self.button_button_inv_friend = self.find_image('button_inv_friend.png')
+        if self.button_button_inv_friend:
+            '''click to invite friends button'''
+            self.click_to_center(self.button_button_inv_friend)
+            '''check image'''
+            self.assertTrue(self.find_image('sample_invite_friend_window.png'))
+        else:
+            self.get_screen()
+            raise ValueError("isn't fiding button_inv_friend")
+
+
+
+
+
 
 if __name__ == "__main__":
     for _ in range(10):

@@ -49,8 +49,6 @@ def choose_nation(REGIONS_ON_WINDOW):
         logging.error("button_choose_nation isn't finded")
         pyautogui.alert("{} doesn't find".format('button_choose_nation.png'))
 
-
-
 @wrappers.log_time
 def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
     time.sleep(20)
@@ -72,9 +70,9 @@ def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
 
     '''click to area_art_bomb'''
     browser.monoregion_multisearch_and_click('help_arrow_down.png',
-                                          lower_on=100,
-                                          region=REGIONS_ON_FULL_SCREEN['center_mid']
-                                          )
+                                             lower_on=100,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid']
+                                             )
 
     time.sleep(10)
     pyautogui.moveTo(5, 5, 1)

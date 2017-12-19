@@ -13,7 +13,6 @@ def wipe(SOCIAL, SERVER, ID):
     driver = open_browser()
 
     '''go to admin panel'''
-    driver.maximize_window()
     driver.get(SOC_NET_LINKS['ADM'])
 
     '''login'''

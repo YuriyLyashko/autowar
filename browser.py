@@ -6,7 +6,6 @@ from tutor_py_files.wrappers import else_click_to_help_arrow, log_time
 pyautogui.FAILSAFE = False
 
 
-
 def get_screen():
     for _ in range(10):
         coord = pyautogui.screenshot('{}{}{}'.format(os.getcwd(),
@@ -54,7 +53,8 @@ def find_image_and_click(image_name, **kwargs):
 
 def find_flashing_image_and_click(image_name,
                                   higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
-                                  **kwargs):
+                                  **kwargs
+                                  ):
     logging.info('find_flashing_image_and_click')
     image = persistent_search(image_name, **kwargs)
     if not image:
@@ -90,7 +90,8 @@ def monoregion_multisearch_and_click(image_name,
 def multiregion_monosearch_and_click(image_name,
                                      regions,
                                      higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
-                                     **kwargs):
+                                     **kwargs
+                                     ):
     logging.info('{}'.format('multiregion_monosearch_and_click'))
     with Pool(5) as pool:
         for image in pool.imap_unordered(monosearch, ((image_name, regions['left_up']),

@@ -16,7 +16,7 @@ if __name__ == '__main__':
     n = 1
     while True:
         start_time = datetime.datetime.now()
-        logging.info('\n\n\n          launch {}'.format(n))
+        logging.info('\n\n\n         tutor test, launch {}'.format(n))
         logging.info('start')
 
 
