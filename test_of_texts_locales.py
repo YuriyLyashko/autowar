@@ -9,7 +9,7 @@ from tutor_py_files import regions
 SOCIAL = 'FB'
 
 
-class TopMenuTests(unittest.TestCase):
+class LocalesTests(unittest.TestCase):
     def setUp(self):
         # import load_max_lvl_dump
         ''''''
@@ -66,7 +66,6 @@ class TopMenuTests(unittest.TestCase):
         '''set_full_screen'''
         browser.set_full_screen(REGIONS_ON_WINDOW)
 
-
     def tearDown(self):
         self.driver.quit()
 
@@ -111,15 +110,11 @@ class TopMenuTests(unittest.TestCase):
     def test_ru_button_tips_locale(self):
         self.buttons = os.listdir('{}{}'.format(os.getcwd(), '\\screens\\locales\\ru\\buttons'))
         self.locales = os.listdir('{}{}'.format(os.getcwd(), '\\screens\\locales\\ru\\locales'))
-        # print('buttons', self.buttons)
-        # print('locales', self.locales)
-
         ''''''
         for button, locale in zip(self.buttons, self.locales):
-
             self.move_mouse_to(self.find_button(button))
             with self.subTest():
-                self.assertTrue(self.find_locale(locale))
+                self.assertTrue(self.find_locale(locale), msg="{} not finded".format(locale))
 
         # time.sleep(60*5)
 
