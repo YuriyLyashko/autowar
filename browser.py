@@ -98,7 +98,8 @@ def multiregion_monosearch_and_click(image_name,
                                                       (image_name, regions['left_down']),
                                                       (image_name, regions['center_mid']),
                                                       (image_name, regions['right_up']),
-                                                      (image_name, regions['right_down'])
+                                                      (image_name, regions['right_down']),
+                                                      (image_name), None
                                                       )
                                          ):
             logging.info('{} {}'.format(image_name, image))
