@@ -27,21 +27,22 @@ def choose_nation(REGIONS_ON_WINDOW):
                     break
                 browser.click_to_center(button_right_arrow_to_choose_nation)
 
-        logging.info('''1.2 scroll nation left''')
-        time.sleep(5)
-        button_left_arrow_to_choose_nation = browser.persistent_search('left_arrow_to_choose_nation.png',
-                                                                       region=REGIONS_ON_WINDOW['left_mid']
-                                                                       )
-        logging.info('button_left_arrow_to_choose_nation {}'.format(button_left_arrow_to_choose_nation))
-        if button_left_arrow_to_choose_nation:
-            for i in range(10):
-                time.sleep(5)
-                usa_nation = browser.fast_search('USA_nation.png', region=REGIONS_ON_WINDOW['center_down'])
-                logging.info('usa_nation {}'.format(usa_nation))
-                if usa_nation:
-                    browser.click_to_center(button_choose_nation)
-                    break
-                browser.click_to_center(button_left_arrow_to_choose_nation)
+        if not usa_nation:
+            logging.info('''1.2 scroll nation left''')
+            time.sleep(5)
+            button_left_arrow_to_choose_nation = browser.persistent_search('left_arrow_to_choose_nation.png',
+                                                                           region=REGIONS_ON_WINDOW['left_mid']
+                                                                           )
+            logging.info('button_left_arrow_to_choose_nation {}'.format(button_left_arrow_to_choose_nation))
+            if button_left_arrow_to_choose_nation:
+                for i in range(10):
+                    time.sleep(5)
+                    usa_nation = browser.fast_search('USA_nation.png', region=REGIONS_ON_WINDOW['center_down'])
+                    logging.info('usa_nation {}'.format(usa_nation))
+                    if usa_nation:
+                        browser.click_to_center(button_choose_nation)
+                        break
+                    browser.click_to_center(button_left_arrow_to_choose_nation)
         if not usa_nation:
             logging.error("usa_nation isn't finded")
             pyautogui.alert("{} doesn't find".format('USA_nation.png'))
@@ -51,7 +52,7 @@ def choose_nation(REGIONS_ON_WINDOW):
 
 @wrappers.log_time
 def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
-    time.sleep(20)
+    # time.sleep(20)
 
     pyautogui.moveTo(5, 5, 1)
     if browser.persistent_search('button_to_battle.png', region=REGIONS_ON_FULL_SCREEN['center_up']):
