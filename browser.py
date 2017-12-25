@@ -1,7 +1,7 @@
 import pyautogui, time, datetime, os, logging
 from multiprocessing import Pool
 from selenium import webdriver
-from tutor_py_files.wrappers import else_click_to_help_arrow, log_time
+from tutor_py_files.wrappers import else_click_to_help_arrow, write_log_and_video
 
 pyautogui.FAILSAFE = False
 

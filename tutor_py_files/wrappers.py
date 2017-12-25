@@ -1,4 +1,4 @@
-import datetime, re, logging
+import datetime, re, logging, subprocess, os
 
 import browser
 
@@ -17,10 +17,22 @@ keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
                        'battle_icon': ()
 }
 
-def log_time(func):
+def write_log_and_video(func):
     def wrapper(*args, **kwargs):
         logging.info('{} started'.format(func.__name__))
+
+        command = """ffmpeg -t 1200 -f gdigrab -i desktop {}{}{}_{}.mpeg""".format(os.getcwd(),
+                                                                           '\\screens\\tutor\\video\\',
+                                                                           datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S'),
+                                                                           func.__name__
+                                                                           )
+        process = subprocess.Popen(command)
+
         func(*args, **kwargs)
+
+        subprocess.getoutput("taskkill /f /im ffmpeg.exe") #kill video writing process
+        process.communicate()[0]
+
         logging.info('{} finished \n'.format(func.__name__))
     return wrapper
 
