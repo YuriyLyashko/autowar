@@ -2,9 +2,9 @@ import re, time
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
 
+from tutor_py_files import wrappers
 from browser import open_browser
 from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_NET_LINKS, SOC_AUTH_INFO
-
 
 
 def load_max_lvl_dump(SOCIAL, SERVER, ID):

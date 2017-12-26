@@ -1,6 +1,10 @@
-import datetime, re, logging, subprocess, os
+import datetime, re, logging, subprocess, os, sys
+
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 
 import browser
+
+time_to_stop = '1200'
 
 
 keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
@@ -15,24 +19,24 @@ keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
                        'down_menu': (),
                        'location_icon': (),
                        'battle_icon': ()
-}
+                       }
 
 def write_log_and_video(func):
     def wrapper(*args, **kwargs):
         logging.info('{} started'.format(func.__name__))
-
-        command = """ffmpeg -t 1200 -f gdigrab -i desktop {}{}{}_{}.mpeg""".format(os.getcwd(),
-                                                                           '\\screens\\tutor\\video\\',
-                                                                           datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S'),
-                                                                           func.__name__
-                                                                           )
+        command = """ffmpeg -t {} -f gdigrab -r 30 -i desktop {}{}{}_{}.mpeg""".format(time_to_stop,
+                                                                                 os.getcwd(),
+                                                                                 '\\screens\\tutor\\video\\',
+                                                                                 datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S'),
+                                                                                 func.__name__
+                                                                                 )
         process = subprocess.Popen(command)
 
         func(*args, **kwargs)
 
-        subprocess.getoutput("taskkill /f /im ffmpeg.exe") #kill video writing process
+        # subprocess.getoutput("taskkill /f /im ffmpeg.exe") #kill video writing process
+        process.kill()
         process.communicate()[0]
-
         logging.info('{} finished \n'.format(func.__name__))
     return wrapper
 

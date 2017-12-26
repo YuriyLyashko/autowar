@@ -1,10 +1,8 @@
 import pyautogui, time, datetime, os, logging
 from multiprocessing import Pool
 from selenium import webdriver
-from tutor_py_files.wrappers import else_click_to_help_arrow, write_log_and_video
 
 pyautogui.FAILSAFE = False
-
 
 def get_screen():
     for _ in range(10):
@@ -14,14 +12,14 @@ def get_screen():
                                      )
         time.sleep(5)
 
-def fast_search(image_name, **kwargs):
+def monosearch_10(image_name, **kwargs):
     for i in range(10):
         coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name), **kwargs)
         if coord:
             return coord
     return None
 
-def persistent_search(image_name, **kwargs):
+def monosearch_1000(image_name, **kwargs):
     for i in range(1000):
         coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name),
                                          grayscale=True,
@@ -41,7 +39,7 @@ def monosearch(come):
     return None
 
 def find_image_and_click(image_name, **kwargs):
-    image = fast_search(image_name, **kwargs)
+    image = monosearch_10(image_name, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
         pyautogui.alert("{} doesn't find".format(image_name))
@@ -56,7 +54,7 @@ def find_flashing_image_and_click(image_name,
                                   **kwargs
                                   ):
     logging.info('find_flashing_image_and_click')
-    image = persistent_search(image_name, **kwargs)
+    image = monosearch_1000(image_name, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
         get_screen()
@@ -137,8 +135,6 @@ def scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu):
     driver.execute_script('scroll({},{});'.format(left_coord_top_menu, top_coord_top_menu - 100))
 
 
-
-
 def open_browser():
     logging.info('''open open_browser''')
     driver = webdriver.Chrome('{}\chromedriver.exe'.format(os.path.dirname(__file__)))
@@ -175,6 +171,6 @@ def click_to_game_area(width_top_menu, left_coord_top_menu, top_coord_top_menu, 
 def accept_flash_running(region):
     logging.info('''accept flash running''')
     time.sleep(0.5)
-    button_accept_flash_running = persistent_search('accept_flash_running.png', region=region)
+    button_accept_flash_running = monosearch_1000('accept_flash_running.png', region=region)
     if button_accept_flash_running:
         click_to_center(button_accept_flash_running)

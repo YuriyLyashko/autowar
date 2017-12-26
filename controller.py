@@ -26,7 +26,7 @@ if __name__ == '__main__':
         browser.login(driver, SOC_AUTH_INFO[SOCIAL]['LOGIN'], SOC_AUTH_INFO[SOCIAL]['PASS'])
         browser.go_to_social_network(driver, SOC_NET_LINKS[SOCIAL])
         width_screen, height_screen = browser.get_screen_resolution_size()
-        left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = browser.persistent_search('top_menu.png')
+        left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = browser.monosearch_1000('top_menu.png')
         REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN = regions.get_regions(left_coord_top_menu,
                                                                         width_top_menu,
                                                                         height_screen,

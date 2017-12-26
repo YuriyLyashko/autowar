@@ -2,6 +2,7 @@ import os, datetime, time, unittest, pyautogui, warnings, HtmlTestRunner
 
 import browser, dump_loader
 
+from tutor_py_files import wrappers
 from authentication_info import SOC_AUTH_INFO, SOC_NET_LINKS
 from tutor_py_files import regions
 
@@ -11,6 +12,7 @@ SERVER = 'FB'
 
 
 class LocalesTests(unittest.TestCase):
+    @wrappers.write_log_and_video
     def setUp(self):
         dump_loader.load_max_lvl_dump(SOCIAL, SERVER, SOC_AUTH_INFO[SOCIAL]['ID'])
         ''''''
@@ -35,7 +37,7 @@ class LocalesTests(unittest.TestCase):
 
         '''find game's top menu'''
         self.left_coord_top_menu, self.top_coord_top_menu, self.width_top_menu, self.height_top_menu = \
-            browser.persistent_search('top_menu.png')
+            browser.monosearch_1000('top_menu.png')
 
         '''scroll down'''
         self.driver.execute_script('scroll({},{});'.format(self.left_coord_top_menu, self.top_coord_top_menu - 150))
@@ -133,6 +135,7 @@ class LocalesTests(unittest.TestCase):
         self.click_to_center(self.find_image('language_select.png'))
         self.click_to_center(self.find_image('language_select.png'))
 
+    @wrappers.write_log_and_video
     def test_ru_button_tips_locale(self):
         if not self.find_image('ru_language_selected.png'): self.change_lanuage()
         self.close_all_bonus_windows()

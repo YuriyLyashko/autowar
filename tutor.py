@@ -10,17 +10,17 @@ def choose_nation(REGIONS_ON_WINDOW):
     logging.info('''1.choose nation''')
     time.sleep(30)
     pyautogui.moveTo(pyautogui.center(REGIONS_ON_WINDOW['center_mid']), duration=1)
-    button_choose_nation = browser.persistent_search('button_choose_nation.png', region=REGIONS_ON_WINDOW['center_down'])
+    button_choose_nation = browser.monosearch_1000('button_choose_nation.png', region=REGIONS_ON_WINDOW['center_down'])
     if button_choose_nation:
         logging.info('''1.1 scroll nation right''')
-        button_right_arrow_to_choose_nation = browser.persistent_search('right_arrow_to_choose_nation.png',
-                                                                        region=REGIONS_ON_WINDOW['right_mid']
-                                                                        )
+        button_right_arrow_to_choose_nation = browser.monosearch_1000('right_arrow_to_choose_nation.png',
+                                                                      region=REGIONS_ON_WINDOW['right_mid']
+                                                                      )
         logging.info('button_right_arrow_to_choose_nation {}'.format(button_right_arrow_to_choose_nation))
         if button_right_arrow_to_choose_nation:
             for i in range(10):
                 time.sleep(2)
-                usa_nation = browser.fast_search('USA_nation.png', region=REGIONS_ON_WINDOW['center_down'])
+                usa_nation = browser.monosearch_10('USA_nation.png', region=REGIONS_ON_WINDOW['center_down'])
                 logging.info('usa_nation {}'.format(usa_nation))
                 if usa_nation:
                     browser.click_to_center(button_choose_nation)
@@ -30,14 +30,14 @@ def choose_nation(REGIONS_ON_WINDOW):
         if not usa_nation:
             logging.info('''1.2 scroll nation left''')
             time.sleep(5)
-            button_left_arrow_to_choose_nation = browser.persistent_search('left_arrow_to_choose_nation.png',
-                                                                           region=REGIONS_ON_WINDOW['left_mid']
-                                                                           )
+            button_left_arrow_to_choose_nation = browser.monosearch_1000('left_arrow_to_choose_nation.png',
+                                                                         region=REGIONS_ON_WINDOW['left_mid']
+                                                                         )
             logging.info('button_left_arrow_to_choose_nation {}'.format(button_left_arrow_to_choose_nation))
             if button_left_arrow_to_choose_nation:
                 for i in range(10):
                     time.sleep(5)
-                    usa_nation = browser.fast_search('USA_nation.png', region=REGIONS_ON_WINDOW['center_down'])
+                    usa_nation = browser.monosearch_10('USA_nation.png', region=REGIONS_ON_WINDOW['center_down'])
                     logging.info('usa_nation {}'.format(usa_nation))
                     if usa_nation:
                         browser.click_to_center(button_choose_nation)
@@ -55,7 +55,7 @@ def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
     # time.sleep(20)
 
     pyautogui.moveTo(5, 5, 1)
-    if browser.persistent_search('button_to_battle.png', region=REGIONS_ON_FULL_SCREEN['center_up']):
+    if browser.monosearch_1000('button_to_battle.png', region=REGIONS_ON_FULL_SCREEN['center_up']):
         '''click to button_full_screen_game'''
         browser.monoregion_multisearch_and_click('button_full_screen_game.png', region=REGIONS_ON_WINDOW['right_down'])
 
@@ -212,9 +212,9 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(35)
     pyautogui.moveTo(5, 5, 1)
-    if browser.persistent_search('help_arrow_right.png',
-                                 region=REGIONS_ON_FULL_SCREEN['right_mid']
-                                 ):
+    if browser.monosearch_1000('help_arrow_right.png',
+                               region=REGIONS_ON_FULL_SCREEN['right_mid']
+                               ):
         logging.info('way 1')
         '''find button_helth'''
         browser.monoregion_multisearch_and_click('button_helth.png', region=REGIONS_ON_FULL_SCREEN['right_mid'])
@@ -238,7 +238,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
         time.sleep(20)
         pyautogui.moveTo(5, 5, 1)
         '''find button_helth'''
-        button_helth = browser.persistent_search('button_helth.png', region=REGIONS_ON_FULL_SCREEN['right_mid'])
+        button_helth = browser.monosearch_1000('button_helth.png', region=REGIONS_ON_FULL_SCREEN['right_mid'])
         if button_helth:
             logging.info('way 2.1')
             browser.click_to_center(button_helth)
@@ -251,13 +251,13 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                                   )
         else:
             logging.info('way 2.2')
-            help_arrow_right = browser.persistent_search('help_arrow_right.png', region=REGIONS_ON_FULL_SCREEN['right_mid'])
+            help_arrow_right = browser.monosearch_1000('help_arrow_right.png', region=REGIONS_ON_FULL_SCREEN['right_mid'])
             if help_arrow_right:
                 logging.info('way 2.2.1')
                 browser.click_to_center(help_arrow_right, righter_on=50)
 
                 time.sleep(1)
-                help_arrow_down = browser.persistent_search('help_arrow_down.png', region=REGIONS_ON_FULL_SCREEN['center_mid'])
+                help_arrow_down = browser.monosearch_1000('help_arrow_down.png', region=REGIONS_ON_FULL_SCREEN['center_mid'])
                 if help_arrow_down:
                     logging.info('way 2.2.1.1')
                     '''click to area_helth'''
@@ -269,10 +269,10 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
     time.sleep(20)
     pyautogui.moveTo(5, 5, 1)
     '''click to quest_4_7_icon'''
-    quest_4_7_icon = browser.persistent_search('quest_4_7_icon.png',
-                                               region=REGIONS_ON_FULL_SCREEN['center_down_menu'],
+    quest_4_7_icon = browser.monosearch_1000('quest_4_7_icon.png',
+                                             region=REGIONS_ON_FULL_SCREEN['center_down_menu'],
 
-                                               )
+                                             )
     if quest_4_7_icon:
         logging.info('quest_4_7_icon is finded')
         browser.click_to_center(quest_4_7_icon)
@@ -284,7 +284,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                               )
     else:
         logging.info('quest_4_7_icon is NOT finded')
-        help_arrow_down = browser.persistent_search('help_arrow_down.png', region=REGIONS_ON_FULL_SCREEN['center_down_menu'])
+        help_arrow_down = browser.monosearch_1000('help_arrow_down.png', region=REGIONS_ON_FULL_SCREEN['center_down_menu'])
         if help_arrow_down:
             browser.click_to_center(help_arrow_down, lower_on=70)
             time.sleep(2)
@@ -393,7 +393,7 @@ def quest_6(REGIONS_ON_FULL_SCREEN):
 
 @wrappers.write_log_and_video
 def quest_7(REGIONS_ON_FULL_SCREEN):
-    # print(browser.persistent_search('10.png', region=REGIONS_ON_FULL_SCREEN['right_up_menu']))
+    # print(browser.monosearch_1000('10.png', region=REGIONS_ON_FULL_SCREEN['right_up_menu']))
 
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
