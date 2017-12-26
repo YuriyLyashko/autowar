@@ -1,0 +1,4 @@
+numpy 1.12.1
+selenium 3.6.0
+PyAutoGUI 0.9.36
+html-testRunner 1.1.1
