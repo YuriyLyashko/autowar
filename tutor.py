@@ -4,7 +4,6 @@ import browser
 from tutor_py_files import wrappers
 
 
-
 @wrappers.write_log_and_video
 def choose_nation(REGIONS_ON_WINDOW):
     logging.info('''1.choose nation''')
@@ -13,7 +12,7 @@ def choose_nation(REGIONS_ON_WINDOW):
     button_choose_nation = browser.monosearch_1000('button_choose_nation.png', region=REGIONS_ON_WINDOW['center_down'])
     if button_choose_nation:
         logging.info('''1.1 scroll nation right''')
-        button_right_arrow_to_choose_nation = browser.monosearch_1000('right_arrow_to_choose_nation.png',
+        button_right_arrow_to_choose_nation = browser.monosearch_1000('NY_right_arrow_to_choose_nation.png',
                                                                       region=REGIONS_ON_WINDOW['right_mid']
                                                                       )
         logging.info('button_right_arrow_to_choose_nation {}'.format(button_right_arrow_to_choose_nation))
@@ -30,7 +29,7 @@ def choose_nation(REGIONS_ON_WINDOW):
         if not usa_nation:
             logging.info('''1.2 scroll nation left''')
             time.sleep(5)
-            button_left_arrow_to_choose_nation = browser.monosearch_1000('left_arrow_to_choose_nation.png',
+            button_left_arrow_to_choose_nation = browser.monosearch_1000('NY_left_arrow_to_choose_nation.png',
                                                                          region=REGIONS_ON_WINDOW['left_mid']
                                                                          )
             logging.info('button_left_arrow_to_choose_nation {}'.format(button_left_arrow_to_choose_nation))

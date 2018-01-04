@@ -59,7 +59,7 @@ class LocalesTests(unittest.TestCase):
                                                                                   self.width_screen
                                                                                   )
 
-        time.sleep(30)
+        time.sleep(40)
 
     def tearDown(self):
         self.driver.quit()
@@ -149,9 +149,13 @@ class LocalesTests(unittest.TestCase):
 
         '''check locales when focus to buttons'''
         for button, locale in zip(self.buttons, self.locales):
-            self.move_mouse_to(self.find_button(button))
+            button_coord = self.find_button(button)
             with self.subTest():
-                self.assertTrue(self.find_locale(locale), msg="{} not finded".format(locale))
+                self.assertTrue(button_coord, msg="{} not finded".format(button))
+            if button_coord:
+                self.move_mouse_to(button_coord)
+                with self.subTest():
+                    self.assertTrue(self.find_locale(locale), msg="{} not finded".format(locale))
 
         # time.sleep(60*5)
 
