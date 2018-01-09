@@ -27,7 +27,7 @@ def write_log_and_video(func):
         command = """ffmpeg -t {} -f gdigrab -r 30 -i desktop {}{}{}_{}.mpeg""".format(time_to_stop,
                                                                                  os.getcwd(),
                                                                                  '\\screens\\tutor\\video\\',
-                                                                                 datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S'),
+                                                                                 datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'),
                                                                                  func.__name__
                                                                                  )
         process = subprocess.Popen(command)
