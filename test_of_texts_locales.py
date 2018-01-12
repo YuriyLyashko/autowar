@@ -30,7 +30,7 @@ class LocalesTests(unittest.TestCase):
         browser.login(self.driver, SOC_AUTH_INFO[SOCIAL]['LOGIN'], SOC_AUTH_INFO[SOCIAL]['PASS'])
 
         '''go to game page'''
-        browser.go_to_social_network(self.driver, SOC_NET_LINKS[SOCIAL])
+        browser.go_to_social_network(self.driver, SOC_NET_LINKS['{}_game'.format(SOCIAL)])
 
         '''get screen resolution size'''
         self.width_screen, self.height_screen = pyautogui.size()
