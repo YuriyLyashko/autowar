@@ -15,6 +15,7 @@ if __name__ == '__main__':
 
     n = 1
     while True:
+        times = []
         start_time = datetime.datetime.now()
         logging.info('\n\n\n         tutor test, launch {}'.format(n))
         logging.info('start')
@@ -24,7 +25,7 @@ if __name__ == '__main__':
         driver = browser.open_browser()
         browser.go_to_social_network(driver, SOC_NET_LINKS[SOCIAL])
         browser.login(driver, SOC_AUTH_INFO[SOCIAL]['LOGIN'], SOC_AUTH_INFO[SOCIAL]['PASS'])
-        browser.go_to_social_network(driver, SOC_NET_LINKS[SOCIAL])
+        browser.go_to_social_network(driver, SOC_NET_LINKS['{}_game'.format(SOCIAL)])
         width_screen, height_screen = browser.get_screen_resolution_size()
         left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = browser.monosearch_1000('top_menu.png')
         REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN = regions.get_regions(left_coord_top_menu,
@@ -63,7 +64,7 @@ if __name__ == '__main__':
         time_spent = finish_time - start_time
         logging.info('time_spent {}'.format(time_spent))
         time.sleep(5)
-        # times.append(time_spent)
-        # logging.info('average time: {}'.format(sum(times)/len(times)))
+        times.append(time_spent)
+        logging.info('average time: {}'.format(sum(times, datetime.timedelta(0)) / len(times)))
 
         n+=1
