@@ -10,6 +10,7 @@ if __name__ == '__main__':
     SERVER = 'FB'  # 'DM', 'FB'
     ID = SOC_AUTH_INFO[SOCIAL]['ID']
 
+    samples_dir = '\\screens\\tutor\\samples\\'
 
 
 
@@ -21,13 +22,13 @@ if __name__ == '__main__':
         logging.info('start')
 
 
-        wipe_user_progress.wipe(SOCIAL, SERVER, ID)
+        # wipe_user_progress.wipe(SOCIAL, SERVER, ID)
         driver = browser.open_browser()
         browser.go_to_social_network(driver, SOC_NET_LINKS[SOCIAL])
         browser.login(driver, SOC_AUTH_INFO[SOCIAL]['LOGIN'], SOC_AUTH_INFO[SOCIAL]['PASS'])
         browser.go_to_social_network(driver, SOC_NET_LINKS['{}_game'.format(SOCIAL)])
         width_screen, height_screen = browser.get_screen_resolution_size()
-        left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = browser.monosearch_1000('top_menu.png')
+        left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = browser.monosearch_1000('top_menu.png', samples_dir)
         REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN = regions.get_regions(left_coord_top_menu,
                                                                         width_top_menu,
                                                                         height_screen,
@@ -35,22 +36,22 @@ if __name__ == '__main__':
                                                                         )
         browser.scroll_down(driver, left_coord_top_menu, top_coord_top_menu)
         browser.click_to_game_area(width_top_menu, left_coord_top_menu, top_coord_top_menu, height_screen)
-        browser.accept_flash_running(REGIONS_ON_FULL_SCREEN['left_up'])
+        browser.accept_flash_running(REGIONS_ON_FULL_SCREEN['left_up'], samples_dir)
 
 
-        # time.sleep(30)
-        # browser.scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu)
-        # browser.set_full_screen(REGIONS_ON_WINDOW)
+        time.sleep(30)
+        browser.scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu)
+        browser.set_full_screen(samples_dir, REGIONS_ON_WINDOW)
 
 
-        tutor.choose_nation(REGIONS_ON_WINDOW)
-        tutor.first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN)
-        tutor.quest_1(REGIONS_ON_FULL_SCREEN)
-        tutor.quest_2(REGIONS_ON_FULL_SCREEN)
-        tutor.quest_3(REGIONS_ON_FULL_SCREEN)
-        tutor.quest_4(REGIONS_ON_FULL_SCREEN)
-        tutor.quest_5(REGIONS_ON_FULL_SCREEN)
-        tutor.quest_6(REGIONS_ON_FULL_SCREEN)
+        # tutor.choose_nation(REGIONS_ON_WINDOW)
+        # tutor.first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN)
+        # tutor.quest_1(REGIONS_ON_FULL_SCREEN)
+        # tutor.quest_2(REGIONS_ON_FULL_SCREEN)
+        # tutor.quest_3(REGIONS_ON_FULL_SCREEN)
+        # tutor.quest_4(REGIONS_ON_FULL_SCREEN)
+        # tutor.quest_5(REGIONS_ON_FULL_SCREEN)
+        # tutor.quest_6(REGIONS_ON_FULL_SCREEN)
         tutor.quest_7(REGIONS_ON_FULL_SCREEN)
         tutor.quest_8(REGIONS_ON_FULL_SCREEN)
         tutor.quest_9(REGIONS_ON_FULL_SCREEN)

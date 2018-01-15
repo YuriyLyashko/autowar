@@ -2,26 +2,29 @@ import pyautogui, time, datetime, os, logging
 from multiprocessing import Pool
 from selenium import webdriver
 
+# samples_dir = '\\screens\\tutor\\samples\\'
+screens_dir = '\\screens\\tutor\\'
+
 pyautogui.FAILSAFE = False
 
 def get_screen():
     for _ in range(10):
         coord = pyautogui.screenshot('{}{}{}'.format(os.getcwd(),
-                                                     '\\screens\\tutor\\',
+                                                     screens_dir,
                                                      '{}.png'.format(datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S')))
                                      )
         time.sleep(5)
 
-def monosearch_10(image_name, **kwargs):
+def monosearch_10(image_name, samples_dir, **kwargs):
     for i in range(10):
-        coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name), **kwargs)
+        coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), samples_dir, image_name), **kwargs)
         if coord:
             return coord
     return None
 
-def monosearch_1000(image_name, **kwargs):
+def monosearch_1000(image_name, samples_dir, **kwargs):
     for i in range(1000):
-        coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name),
+        coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), samples_dir, image_name),
                                          grayscale=True,
                                          **kwargs)
         if coord:
@@ -29,17 +32,17 @@ def monosearch_1000(image_name, **kwargs):
     return None
 
 def monosearch(come):
-    image_name, region = come
+    image_name, samples_dir, region = come
     for i in range(1000):
-        coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\tutor\\samples\\', image_name),
+        coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), samples_dir, image_name),
                                          grayscale=True,
                                          region=region)
         if coord:
             return coord
     return None
 
-def find_image_and_click(image_name, **kwargs):
-    image = monosearch_10(image_name, **kwargs)
+def find_image_and_click(image_name, samples_dir, **kwargs):
+    image = monosearch_10(image_name, samples_dir, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
         pyautogui.alert("{} doesn't find".format(image_name))
@@ -64,13 +67,14 @@ def find_flashing_image_and_click(image_name,
         click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
 
 def monoregion_multisearch_and_click(image_name,
+                                     samples_dir,
                                      region=None,
                                      higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
                                      **kwargs
                                      ):
     logging.info('{}'.format('monoregion_multisearch_and_click'))
     with Pool(os.cpu_count()) as pool:
-        for image in pool.imap_unordered(monosearch, [(image_name, region) for _ in range(os.cpu_count())]):
+        for image in pool.imap_unordered(monosearch, [(image_name, samples_dir, region) for _ in range(os.cpu_count())]):
             logging.info('{} {}'.format(image_name, image))
             if image:
                 click_to_center(image,
@@ -86,18 +90,19 @@ def monoregion_multisearch_and_click(image_name,
         pyautogui.alert("{} doesn't find".format(image_name))
 
 def multiregion_monosearch_and_click(image_name,
+                                     samples_dir,
                                      regions,
                                      higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
                                      **kwargs
                                      ):
     logging.info('{}'.format('multiregion_monosearch_and_click'))
     with Pool(5) as pool:
-        for image in pool.imap_unordered(monosearch, ((image_name, regions['left_up']),
-                                                      (image_name, regions['left_down']),
-                                                      (image_name, regions['center_mid']),
-                                                      (image_name, regions['right_up']),
-                                                      (image_name, regions['right_down']),
-                                                      (image_name), None
+        for image in pool.imap_unordered(monosearch, ((image_name, samples_dir, regions['left_up']),
+                                                      (image_name, samples_dir, regions['left_down']),
+                                                      (image_name, samples_dir, regions['center_mid']),
+                                                      (image_name, samples_dir, regions['right_up']),
+                                                      (image_name, samples_dir, regions['right_down']),
+                                                      (image_name), samples_dir, None
                                                       )
                                          ):
             logging.info('{} {}'.format(image_name, image))
@@ -119,12 +124,13 @@ def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
     pyautogui.moveTo(x=x+righter_on-lefter_on, y=y+lower_on-higher_on, duration=0.5)
     pyautogui.click()
 
-def set_full_screen(REGIONS_ON_WINDOW):
+def set_full_screen(samples_dir, REGIONS_ON_WINDOW):
     logging.info('set_full_screen')
     pyautogui.moveTo(5, 5, 1)
     time.sleep(2)
     logging.info('''click to button_full_screen_game_top''')
     find_image_and_click('quest_menu__button_full_screen_game_top.png',
+                         samples_dir,
                          region=REGIONS_ON_WINDOW['center_up'],
                          grayscale=True
                          )
@@ -168,9 +174,9 @@ def click_to_game_area(width_top_menu, left_coord_top_menu, top_coord_top_menu, 
     time.sleep(2)
     pyautogui.click(x=width_top_menu - left_coord_top_menu, y=top_coord_top_menu + height_screen / 2)
 
-def accept_flash_running(region):
+def accept_flash_running(region, samples_dir):
     logging.info('''accept flash running''')
     time.sleep(0.5)
-    button_accept_flash_running = monosearch_1000('accept_flash_running.png', region=region)
+    button_accept_flash_running = monosearch_1000('accept_flash_running.png', samples_dir, region=region)
     if button_accept_flash_running:
         click_to_center(button_accept_flash_running)
