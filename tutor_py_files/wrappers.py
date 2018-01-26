@@ -25,24 +25,26 @@ keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
 
 
 
-def write_log_and_video(func):
-    def wrapper(*args, **kwargs):
-        logging.info('{} started'.format(func.__name__))
-        command = """ffmpeg -t {} -f gdigrab -r 30 -i desktop {}{}{}_{}.mpeg""".format(time_to_stop,
-                                                                                 os.getcwd(),
-                                                                                 '\\screens\\tutor\\video\\',
-                                                                                 datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'),
-                                                                                 func.__name__
-                                                                                 )
-        process = subprocess.Popen(command)
+def write_log_and_video(videos_dir):
+    def real_decorator(func):
+        def wrapper(*args, **kwargs):
+            logging.info('{} started'.format(func.__name__))
+            command = """ffmpeg -t {} -f gdigrab -r 30 -i desktop {}{}{}_{}.mpeg""".format(time_to_stop,
+                                                                                     os.getcwd(),
+                                                                                     videos_dir,
+                                                                                     datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'),
+                                                                                     func.__name__
+                                                                                     )
+            process = subprocess.Popen(command)
 
-        func(*args, **kwargs)
+            func(*args, **kwargs)
 
-        # subprocess.getoutput("taskkill /f /im ffmpeg.exe") #kill video writing process in taskmanager!!!
-        process.kill()
-        process.communicate()[0]
-        logging.info('{} finished \n'.format(func.__name__))
-    return wrapper
+            # subprocess.getoutput("taskkill /f /im ffmpeg.exe") #kill video writing process in taskmanager!!!
+            process.kill()
+            process.communicate()[0]
+            logging.info('{} finished \n'.format(func.__name__))
+        return wrapper
+    return real_decorator
 
 def else_click_to_help_arrow(func):
     def wrapper(*args, **kwargs):

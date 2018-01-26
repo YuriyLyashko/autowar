@@ -6,7 +6,7 @@ import browser, dump_loader
 from authentication_info import SOC_AUTH_INFO, SOC_NET_LINKS
 from tutor_py_files import wrappers
 from tutor_py_files import regions
-from locales_py_files.directories_settings import samples_dir, ru_buttons_dir, ru_locales_dir
+from locales_py_files.directories_settings import *
 
 
 SOCIAL = 'FB'
@@ -14,7 +14,7 @@ SERVER = 'FB'
 
 
 class LocalesTests(unittest.TestCase):
-    @wrappers.write_log_and_video
+    @wrappers.write_log_and_video(videos_dir)
     def setUp(self):
         dump_loader.load_max_lvl_dump(SOCIAL, SERVER, SOC_AUTH_INFO[SOCIAL]['ID'])
         ''''''
@@ -64,10 +64,19 @@ class LocalesTests(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    @wrappers.write_log_and_video
+    @unittest.skip('I skip it')
+    @wrappers.write_log_and_video(videos_dir)
     def test_ru_button_tips_locale(self):
+        ''''''
+        pyautogui.moveTo(5, 5, 1)
+        '''choose language'''
+
         if not browser.monosearch_10('ru_language_selected.png', samples_dir):
-            browser.change_lanuage(samples_dir)
+            browser.change_lanuage('ru_language_selected.png', samples_dir)
+            time.sleep(40)
+
+        pyautogui.moveTo(5, 5, 1)
+        '''close_all_bonus_windows'''
         browser.close_all_bonus_windows(samples_dir,
                                         self.driver,
                                         self.height_screen,
@@ -91,6 +100,43 @@ class LocalesTests(unittest.TestCase):
                 browser.move_mouse_to(button_coord)
                 with self.subTest():
                     self.assertTrue(browser.monosearch_10(locale, ru_locales_dir), msg="{} not finded".format(locale))
+
+    @unittest.skip('I skip it')
+    @wrappers.write_log_and_video(videos_dir)
+    def test_en_button_tips_locale(self):
+        ''''''
+        pyautogui.moveTo(5, 5, 1)
+        '''choose language'''
+
+        if not browser.monosearch_10('en_language_selected.png', samples_dir):
+            browser.change_lanuage('en_language_selected.png', samples_dir)
+            time.sleep(40)
+
+        pyautogui.moveTo(5, 5, 1)
+        '''close_all_bonus_windows'''
+        browser.close_all_bonus_windows(samples_dir,
+                                        self.driver,
+                                        self.height_screen,
+                                        self.left_coord_top_menu,
+                                        self.top_coord_top_menu
+                                        )
+
+        '''set_full_screen'''
+        browser.set_full_screen(samples_dir, self.REGIONS_ON_WINDOW)
+
+        '''get lists of buttons and locales'''
+        self.buttons = os.listdir('{}{}'.format(os.getcwd(), en_buttons_dir))
+        self.locales = os.listdir('{}{}'.format(os.getcwd(), en_locales_dir))
+
+        '''check locales when focus to buttons'''
+        for button, locale in zip(self.buttons, self.locales):
+            button_coord = browser.monosearch_10(button, en_buttons_dir)
+            with self.subTest():
+                self.assertTrue(button_coord, msg="{} not finded".format(button))
+            if button_coord:
+                browser.move_mouse_to(button_coord)
+                with self.subTest():
+                    self.assertTrue(browser.monosearch_10(locale, en_locales_dir), msg="{} not finded".format(locale))
 
 
 

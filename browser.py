@@ -195,9 +195,16 @@ def accept_flash_running(region, samples_dir):
     if button_accept_flash_running:
         click_to_center(button_accept_flash_running)
 
-def change_lanuage(samples_dir):
-    click_to_center(monosearch_10('language_select.png', samples_dir))
-    click_to_center(monosearch_10('language_select.png', samples_dir))
+def change_lanuage(lanuage_image, samples_dir):
+    select_language_arrow = monosearch_1000('language_select_arrow.png', samples_dir)
+    if select_language_arrow:
+        click_to_center(select_language_arrow)
+        language = monosearch_1000(lanuage_image, samples_dir)
+        if language:
+            click_to_center(language)
+            return True
+        raise ValueError("Language isn't finded")
+    raise ValueError("language_select_arrow isn't finded")
 
 def close_all_bonus_windows(samples_dir, driver, height_screen, left_coord_top_menu, top_coord_top_menu):
     '''close all bonus windows'''

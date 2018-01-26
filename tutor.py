@@ -2,10 +2,10 @@ import pyautogui, time, datetime, logging
 
 import browser
 from tutor_py_files import wrappers
-from tutor_py_files.directories_settings import samples_dir
+from tutor_py_files.directories_settings import samples_dir, videos_dir
 
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def choose_nation(REGIONS_ON_WINDOW):
     logging.info('''1.choose nation''')
     time.sleep(30)
@@ -59,7 +59,7 @@ def choose_nation(REGIONS_ON_WINDOW):
         logging.error("button_choose_nation isn't finded")
         pyautogui.alert("{} doesn't find".format('button_choose_nation.png'))
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
     # time.sleep(20)
 
@@ -115,7 +115,7 @@ def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_mid'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_1(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     '''quest №1 "пекарь"'''
@@ -141,7 +141,7 @@ def quest_1(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_2(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -185,7 +185,7 @@ def quest_2(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_3(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -220,7 +220,7 @@ def quest_3(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_4(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -404,7 +404,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_5(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -442,7 +442,7 @@ def quest_5(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_6(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -528,7 +528,7 @@ def quest_6(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_mid'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_7(REGIONS_ON_FULL_SCREEN):
     # print(browser.monosearch_1000('10.png',
     # samples_dir,
@@ -664,7 +664,7 @@ def quest_7(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_8(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -701,7 +701,7 @@ def quest_8(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_9(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
@@ -751,7 +751,7 @@ def quest_9(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-@wrappers.write_log_and_video
+@wrappers.write_log_and_video(videos_dir)
 def quest_10(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
