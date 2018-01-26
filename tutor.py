@@ -2,8 +2,7 @@ import pyautogui, time, datetime, logging
 
 import browser
 from tutor_py_files import wrappers
-
-samples_dir = '\\screens\\tutor\\samples\\'
+from tutor_py_files.directories_settings import samples_dir
 
 
 @wrappers.write_log_and_video
@@ -16,7 +15,7 @@ def choose_nation(REGIONS_ON_WINDOW):
                                                    region=REGIONS_ON_WINDOW['center_down'])
     if button_choose_nation:
         logging.info('''1.1 scroll nation right''')
-        button_right_arrow_to_choose_nation = browser.monosearch_1000('NY_right_arrow_to_choose_nation.png',
+        button_right_arrow_to_choose_nation = browser.monosearch_1000('right_arrow_to_choose_nation.png',
                                                                       samples_dir,
 
                                                                       region=REGIONS_ON_WINDOW['right_mid']
@@ -37,9 +36,8 @@ def choose_nation(REGIONS_ON_WINDOW):
         if not usa_nation:
             logging.info('''1.2 scroll nation left''')
             time.sleep(5)
-            button_left_arrow_to_choose_nation = browser.monosearch_1000('NY_left_arrow_to_choose_nation.png',
+            button_left_arrow_to_choose_nation = browser.monosearch_1000('left_arrow_to_choose_nation.png',
                                                                          samples_dir,
-
                                                                          region=REGIONS_ON_WINDOW['left_mid']
                                                                          )
             logging.info('button_left_arrow_to_choose_nation {}'.format(button_left_arrow_to_choose_nation))
@@ -173,13 +171,13 @@ def quest_2(REGIONS_ON_FULL_SCREEN):
     time.sleep(2)
     '''click to area build sawmill'''
     '''find help_arrow_down'''
-    browser.monoregion_multisearch_and_click('help_arrow_down.png',
-                                             samples_dir,
-
-                                          lower_on=40,
-                                          righter_on=10,
-                                          region=REGIONS_ON_FULL_SCREEN['center_mid']
-                                          )
+    while browser.monosearch_1000('help_arrow_down.png', samples_dir, region=REGIONS_ON_FULL_SCREEN['center_mid']):
+        browser.monoregion_multisearch_and_click('help_arrow_down.png',
+                                                 samples_dir,
+                                                 lower_on=40,
+                                                 righter_on=10,
+                                                 region=REGIONS_ON_FULL_SCREEN['center_mid']
+                                                 )
 
     time.sleep(3)
     '''click to button_ok'''

@@ -21,6 +21,10 @@ keywords_help_arrow = {'quest_menu': {'arg': 'help_arrow_left.png',
                        'battle_icon': ()
                        }
 
+
+
+
+
 def write_log_and_video(func):
     def wrapper(*args, **kwargs):
         logging.info('{} started'.format(func.__name__))
@@ -34,7 +38,7 @@ def write_log_and_video(func):
 
         func(*args, **kwargs)
 
-        # subprocess.getoutput("taskkill /f /im ffmpeg.exe") #kill video writing process
+        # subprocess.getoutput("taskkill /f /im ffmpeg.exe") #kill video writing process in taskmanager!!!
         process.kill()
         process.communicate()[0]
         logging.info('{} finished \n'.format(func.__name__))

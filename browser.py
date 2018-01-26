@@ -2,13 +2,13 @@ import pyautogui, time, datetime, os, logging
 from multiprocessing import Pool
 from selenium import webdriver
 
-# samples_dir = '\\screens\\tutor\\samples\\'
-screens_dir = '\\screens\\tutor\\'
+from tutor_py_files.directories_settings import screens_dir
+
 
 pyautogui.FAILSAFE = False
 
-def get_screen():
-    for _ in range(10):
+def get_screen(screens_dir):
+    for _ in range(1):
         coord = pyautogui.screenshot('{}{}{}'.format(os.getcwd(),
                                                      screens_dir,
                                                      '{}.png'.format(datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S')))
@@ -41,6 +41,16 @@ def monosearch(come):
             return coord
     return None
 
+def find_all_images(image_name, samples_dir, **kwargs):
+    for i in range(10):
+        coords = pyautogui.locateAllOnScreen('{}{}{}'.format(os.getcwd(), samples_dir, image_name),
+                                             # grayscale=True,
+                                             **kwargs
+                                             )
+        if coords:
+            return coords
+    return None
+
 def find_image_and_click(image_name, samples_dir, **kwargs):
     image = monosearch_10(image_name, samples_dir, **kwargs)
     if not image:
@@ -60,7 +70,7 @@ def find_flashing_image_and_click(image_name,
     image = monosearch_1000(image_name, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
-        get_screen()
+        get_screen(screens_dir)
         pyautogui.alert("{} doesn't find".format(image_name))
     logging.info('{} {}'.format(image_name, image))
     if image:
@@ -86,7 +96,7 @@ def monoregion_multisearch_and_click(image_name,
                 break
     if not image:
         logging.error("{} doesn't find".format(image_name))
-        get_screen()
+        get_screen(screens_dir)
         pyautogui.alert("{} doesn't find".format(image_name))
 
 def multiregion_monosearch_and_click(image_name,
@@ -116,8 +126,12 @@ def multiregion_monosearch_and_click(image_name,
                 break
     if not image:
         logging.error("{} doesn't find".format(image_name))
-        get_screen()
+        get_screen(screens_dir)
         pyautogui.alert("{} doesn't find".format(image_name))
+
+def move_mouse_to(button, righter_on=0, lefter_on=0, lower_on=0, higher_on=0):
+    x, y = pyautogui.center(button)
+    pyautogui.moveTo(x=x + righter_on - lefter_on, y=y + lower_on - higher_on, duration=0.5)
 
 def click_to_center(button, higher_on=0, lower_on=0, righter_on=0, lefter_on=0):
     x, y = pyautogui.center(button)
@@ -180,3 +194,24 @@ def accept_flash_running(region, samples_dir):
     button_accept_flash_running = monosearch_1000('accept_flash_running.png', samples_dir, region=region)
     if button_accept_flash_running:
         click_to_center(button_accept_flash_running)
+
+def change_lanuage(samples_dir):
+    click_to_center(monosearch_10('language_select.png', samples_dir))
+    click_to_center(monosearch_10('language_select.png', samples_dir))
+
+def close_all_bonus_windows(samples_dir, driver, height_screen, left_coord_top_menu, top_coord_top_menu):
+    '''close all bonus windows'''
+
+    while monosearch_10('button_close_window.png', samples_dir):
+        all_buttons_close_window = find_all_images('button_close_window.png', samples_dir)
+        for coord in all_buttons_close_window: click_to_center(coord)
+
+    scroll_down(driver, 0, height_screen)
+
+    button_thank_you_for_comeback = monosearch_10('button_thank_you_for_comeback.png', samples_dir)
+    if button_thank_you_for_comeback: click_to_center(button_thank_you_for_comeback)
+
+    button_restore = monosearch_10('button_restore.png', samples_dir)
+    if button_restore: click_to_center(button_restore)
+
+    scroll_down(driver, left_coord_top_menu, top_coord_top_menu - 100)
