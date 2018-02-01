@@ -4,32 +4,11 @@ from xmlrunner import xmlrunner
 
 import browser
 from authentication_info import SOC_AUTH_INFO, SOC_NET_LINKS
+from top_menu_py_files.directories_settings import *
 
 SOCIAL = 'FB'
 
 class TopMenuTests(unittest.TestCase):
-    def get_screen(self):
-        for i in range(10):
-            pyautogui.screenshot('{}{}{}'.format(os.getcwd(),
-                                                 '\\screens\\friends\\',
-                                                 '{}_{}.png'.format(self, datetime.datetime.now().strftime('%Y_%m_%d__%H_%M_%S'))
-                                                 )
-                                 )
-
-    def find_image(self, image_name, **kwargs):
-        for i in range(10):
-            coord = pyautogui.locateOnScreen('{}{}{}'.format(os.getcwd(), '\\screens\\friends\\samples\\', image_name),
-                                             # grayscale=True,
-                                             **kwargs
-                                             )
-            if coord:
-                return coord
-        return None
-
-    def click_to_center(self, button):
-        x, y = pyautogui.center(button)
-        pyautogui.click(x=x, y=y)
-
     def setUp(self):
         ''''''
         '''ignore insides warnings'''
@@ -46,7 +25,7 @@ class TopMenuTests(unittest.TestCase):
         browser.login(self.driver, SOC_AUTH_INFO[SOCIAL]['LOGIN'], SOC_AUTH_INFO[SOCIAL]['PASS'])
 
         '''go to game page'''
-        browser.go_to_social_network(self.driver, SOC_NET_LINKS[SOCIAL])
+        browser.go_to_social_network(self.driver, SOC_NET_LINKS['{}_game'.format(SOCIAL)])
 
     def tearDown(self):
         self.driver.quit()
@@ -55,51 +34,51 @@ class TopMenuTests(unittest.TestCase):
     def test_invite_friends(self):
         ''''''
         '''find button_button_inv_friend'''
-        self.button_button_inv_friend = self.find_image('button_inv_friend.png')
+        self.button_button_inv_friend = browser.monosearch_10('button_inv_friend.png', samples_dir)
         if self.button_button_inv_friend:
-            '''click to invite friends button'''
-            self.click_to_center(self.button_button_inv_friend)
+            '''click to invite top_menu_py_files button'''
+            browser.click_to_center(self.button_button_inv_friend)
             '''check image'''
-            self.assertTrue(self.find_image('sample_invite_friend_window.png'))
+            self.assertTrue(browser.monosearch_10('sample_invite_friend_window.png', samples_dir))
         else:
-            self.get_screen()
+            browser.get_screen(screens_dir)
             raise ValueError("isn't fiding button_inv_friend")
 
     # @unittest.skip('I have skipped it')
     def test_faq(self):
         ''''''
         '''find button_faq'''
-        self.button_faq = self.find_image('button_faq.png')
+        self.button_faq = browser.monosearch_10('button_faq.png', samples_dir)
         if self.button_faq:
-            '''click to invite friends button'''
-            self.click_to_center(self.button_faq)
+            '''click to invite top_menu_py_files button'''
+            browser.click_to_center(self.button_faq)
             '''check image'''
             time.sleep(5)
-            self.assertTrue(self.find_image('sample_faq_window.png'))
+            self.assertTrue(browser.monosearch_10('sample_faq_window.png', samples_dir))
         else:
-            self.get_screen()
+            browser.get_screen(screens_dir)
             raise ValueError("isn't fiding button_faq")
 
     # @unittest.skip('I have skipped it')
     def test_community(self):
         ''''''
         '''find button_community'''
-        self.button_community = self.find_image('button_community.png')
+        self.button_community = browser.monosearch_10('button_community.png', samples_dir)
         if self.button_community:
             '''click to community button'''
-            self.click_to_center(self.button_community)
+            browser.click_to_center(self.button_community)
             '''find button_not_accept_message'''
             # time.sleep(15)
-            self.button_not_accept_message = self.find_image('button_not_accept_message.png')
+            self.button_not_accept_message = browser.monosearch_10('button_not_accept_message.png', samples_dir)
             if self.button_not_accept_message:
-                self.click_to_center(self.button_not_accept_message)
+                browser.click_to_center(self.button_not_accept_message)
             '''check image'''
             time.sleep(5)
-            self.assertTrue(self.find_image('sample_community_window.png'))
+            self.assertTrue(browser.monosearch_10('sample_community_window.png', samples_dir))
             with self.subTest():
-                self.assertTrue(self.find_image('a.png'))
+                self.assertTrue(browser.monosearch_10('a.png', samples_dir))
         else:
-            self.get_screen()
+            browser.get_screen(screens_dir)
             raise ValueError("isn't fiding button_community")
 
         # pyautogui.hotkey('ctrl', 'w')
@@ -111,7 +90,7 @@ class TopMenuTests(unittest.TestCase):
         width_screen, height_screen = pyautogui.size()
 
         '''find game's top menu'''
-        left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = self.find_image('top_menu.png')
+        left_coord_top_menu, top_coord_top_menu, width_top_menu, height_top_menu = browser.monosearch_10('top_menu.png', samples_dir)
 
         '''scroll down'''
         self.driver.execute_script('scroll({},{});'.format(left_coord_top_menu, top_coord_top_menu - 150))
@@ -122,7 +101,7 @@ class TopMenuTests(unittest.TestCase):
 
         '''accept flash running'''
         time.sleep(0.5)
-        button_accept_flash_running = self.find_image('accept_flash_running.png')
+        button_accept_flash_running = browser.monosearch_10('accept_flash_running.png', samples_dir)
         if button_accept_flash_running:
             button_accept_flash_running_x, button_accept_flash_running_y = pyautogui.center(button_accept_flash_running)
             pyautogui.click(x=button_accept_flash_running_x, y=button_accept_flash_running_y)
@@ -130,11 +109,12 @@ class TopMenuTests(unittest.TestCase):
         time.sleep(30)
 
         '''find button_add_gold'''
-        self.button_add_gold = self.find_image('button_add_gold.png')
-        if not self.button_add_gold: self.get_screen()
+        self.button_add_gold = browser.monosearch_10('button_add_gold.png', samples_dir)
+        if not self.button_add_gold:
+            browser.get_screen(screens_dir)
 
         '''click to button_add_gold'''
-        self.click_to_center(self.button_add_gold)
+        browser.click_to_center(self.button_add_gold)
 
         '''check image'''
         # with Pool(2) as p:
@@ -142,22 +122,23 @@ class TopMenuTests(unittest.TestCase):
         #         if image:
         #             self.assertTrue(image)
         #             break
-        self.assertTrue(self.find_image('sample_add_gold_action_window.png') or self.find_image('sample_add_gold_window.png'),
+        self.assertTrue(browser.monosearch_10('sample_add_gold_action_window.png', samples_dir) or
+                        browser.monosearch_10('sample_add_gold_window.png', samples_dir),
                         msg="sample_add_gold_action_window.png and sample_add_gold_window.png aren't finded")
 
     # @unittest.skip('I have skipped it')
     def test_language_select(self):
         ''''''
         '''find language_select'''
-        self.language_select = self.find_image('language_select.png')
+        self.language_select = browser.monosearch_10('language_select.png', samples_dir)
         if self.language_select:
             '''click to language_select'''
-            self.click_to_center(self.language_select)
+            browser.click_to_center(self.language_select)
             '''find list_of_languages'''
             # time.sleep(15)
             '''check image'''
             time.sleep(5)
-            self.assertTrue(self.find_image('list_of_languages.png'))
+            self.assertTrue(browser.monosearch_10('list_of_languages.png', samples_dir))
 
 
 

@@ -8,7 +8,6 @@ from browser import open_browser
 from authentication_info import ADMIN_LOGIN, ADMIN_PASS, SOC_AUTH_INFO, SOC_NET_LINKS
 
 
-@wrappers.write_log_and_video
 def wipe(SOCIAL, SERVER, ID):
     '''open chrome'''
     driver = open_browser()

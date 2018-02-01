@@ -39,7 +39,7 @@ class LocalesTests(unittest.TestCase):
 
         '''find game's top menu'''
         self.left_coord_top_menu, self.top_coord_top_menu, self.width_top_menu, self.height_top_menu = \
-            browser.monosearch_1000('top_menu.png', samples_dir)
+            browser.monosearch_1000('top_menu_py_files.png', samples_dir)
 
         '''scroll down'''
         self.driver.execute_script('scroll({},{});'.format(self.left_coord_top_menu, self.top_coord_top_menu - 150))
@@ -64,7 +64,7 @@ class LocalesTests(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    @unittest.skip('I skip it')
+    # @unittest.skip('I skip it')
     @wrappers.write_log_and_video(videos_dir)
     def test_ru_button_tips_locale(self):
         ''''''
@@ -101,7 +101,7 @@ class LocalesTests(unittest.TestCase):
                 with self.subTest():
                     self.assertTrue(browser.monosearch_10(locale, ru_locales_dir), msg="{} not finded".format(locale))
 
-    @unittest.skip('I skip it')
+    # @unittest.skip('I skip it')
     @wrappers.write_log_and_video(videos_dir)
     def test_en_button_tips_locale(self):
         ''''''

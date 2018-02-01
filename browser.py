@@ -4,7 +4,6 @@ from selenium import webdriver
 
 from tutor_py_files.directories_settings import screens_dir
 
-
 pyautogui.FAILSAFE = False
 
 def get_screen(screens_dir):
@@ -51,7 +50,7 @@ def find_all_images(image_name, samples_dir, **kwargs):
             return coords
     return None
 
-def find_image_and_click(image_name, samples_dir, **kwargs):
+def monosearch_10_and_click(image_name, samples_dir, **kwargs):
     image = monosearch_10(image_name, samples_dir, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
@@ -62,11 +61,11 @@ def find_image_and_click(image_name, samples_dir, **kwargs):
         return True
     return False
 
-def find_flashing_image_and_click(image_name,
-                                  higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
-                                  **kwargs
-                                  ):
-    logging.info('find_flashing_image_and_click')
+def monosearch_1000_and_click(image_name,
+                              higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
+                              **kwargs
+                              ):
+    logging.info('monosearch_1000_and_click')
     image = monosearch_1000(image_name, **kwargs)
     if not image:
         logging.error("{} doesn't find".format(image_name))
@@ -76,6 +75,18 @@ def find_flashing_image_and_click(image_name,
     if image:
         click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
 
+def monoregion_multisearch(image_name, samples_dir, region=None, **kwargs):
+    logging.info('{}'.format('monoregion_multisearch'))
+    with Pool(os.cpu_count()) as pool:
+        for image in pool.imap_unordered(monosearch, [(image_name, samples_dir, region) for _ in range(os.cpu_count())]):
+            logging.info('{} {}'.format(image_name, image))
+            if image:
+                pool.terminate()
+                return image
+    logging.error("{} doesn't find".format(image_name))
+    get_screen(screens_dir)
+    pyautogui.alert("{} doesn't find".format(image_name))
+
 def monoregion_multisearch_and_click(image_name,
                                      samples_dir,
                                      region=None,
@@ -83,29 +94,33 @@ def monoregion_multisearch_and_click(image_name,
                                      **kwargs
                                      ):
     logging.info('{}'.format('monoregion_multisearch_and_click'))
-    with Pool(os.cpu_count()) as pool:
-        for image in pool.imap_unordered(monosearch, [(image_name, samples_dir, region) for _ in range(os.cpu_count())]):
-            logging.info('{} {}'.format(image_name, image))
-            if image:
-                click_to_center(image,
-                                higher_on=higher_on,
-                                lower_on=lower_on,
-                                righter_on=righter_on,
-                                lefter_on=lefter_on)
-                pool.terminate()
-                break
-    if not image:
-        logging.error("{} doesn't find".format(image_name))
-        get_screen(screens_dir)
-        pyautogui.alert("{} doesn't find".format(image_name))
+    image = monoregion_multisearch(image_name, samples_dir, region=region, **kwargs)
+    click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
 
-def multiregion_monosearch_and_click(image_name,
-                                     samples_dir,
-                                     regions,
-                                     higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
-                                     **kwargs
-                                     ):
-    logging.info('{}'.format('multiregion_monosearch_and_click'))
+
+    # with Pool(os.cpu_count()) as pool:
+    #     for image in pool.imap_unordered(monosearch, [(image_name, samples_dir, region) for _ in range(os.cpu_count())]):
+    #         logging.info('{} {}'.format(image_name, image))
+    #         if image:
+    #             click_to_center(image,
+    #                             higher_on=higher_on,
+    #                             lower_on=lower_on,
+    #                             righter_on=righter_on,
+    #                             lefter_on=lefter_on)
+    #             pool.terminate()
+    #             break
+    # if not image:
+    #     logging.error("{} doesn't find".format(image_name))
+    #     get_screen(screens_dir)
+    #     pyautogui.alert("{} doesn't find".format(image_name))
+
+
+def multiregion_monosearch(image_name,
+                           samples_dir,
+                           regions,
+                           **kwargs
+                           ):
+    logging.info('{}'.format('multiregion_monosearch'))
     with Pool(5) as pool:
         for image in pool.imap_unordered(monosearch, ((image_name, samples_dir, regions['left_up']),
                                                       (image_name, samples_dir, regions['left_down']),
@@ -117,17 +132,43 @@ def multiregion_monosearch_and_click(image_name,
                                          ):
             logging.info('{} {}'.format(image_name, image))
             if image:
-                click_to_center(image,
-                                higher_on=higher_on,
-                                lower_on=lower_on,
-                                righter_on=righter_on,
-                                lefter_on=lefter_on)
-                pool.terminate()
-                break
-    if not image:
-        logging.error("{} doesn't find".format(image_name))
-        get_screen(screens_dir)
-        pyautogui.alert("{} doesn't find".format(image_name))
+                return image
+    logging.error("{} doesn't find".format(image_name))
+    get_screen(screens_dir)
+    pyautogui.alert("{} doesn't find".format(image_name))
+
+def multiregion_monosearch_and_click(image_name,
+                                     samples_dir,
+                                     regions,
+                                     higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
+                                     **kwargs
+                                     ):
+    logging.info('{}'.format('multiregion_monosearch_and_click'))
+    image = multiregion_monosearch(image_name, samples_dir, regions, **kwargs)
+    click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
+
+    # with Pool(5) as pool:
+    #     for image in pool.imap_unordered(monosearch, ((image_name, samples_dir, regions['left_up']),
+    #                                                   (image_name, samples_dir, regions['left_down']),
+    #                                                   (image_name, samples_dir, regions['center_mid']),
+    #                                                   (image_name, samples_dir, regions['right_up']),
+    #                                                   (image_name, samples_dir, regions['right_down']),
+    #                                                   (image_name), samples_dir, None
+    #                                                   )
+    #                                      ):
+    #         logging.info('{} {}'.format(image_name, image))
+    #         if image:
+    #             click_to_center(image,
+    #                             higher_on=higher_on,
+    #                             lower_on=lower_on,
+    #                             righter_on=righter_on,
+    #                             lefter_on=lefter_on)
+    #             pool.terminate()
+    #             break
+    # if not image:
+    #     logging.error("{} doesn't find".format(image_name))
+    #     get_screen(screens_dir)
+    #     pyautogui.alert("{} doesn't find".format(image_name))
 
 def move_mouse_to(button, righter_on=0, lefter_on=0, lower_on=0, higher_on=0):
     x, y = pyautogui.center(button)
@@ -143,11 +184,11 @@ def set_full_screen(samples_dir, REGIONS_ON_WINDOW):
     pyautogui.moveTo(5, 5, 1)
     time.sleep(2)
     logging.info('''click to button_full_screen_game_top''')
-    find_image_and_click('quest_menu__button_full_screen_game_top.png',
-                         samples_dir,
-                         region=REGIONS_ON_WINDOW['center_up'],
-                         grayscale=True
-                         )
+    monosearch_10_and_click('quest_menu__button_full_screen_game_top.png',
+                            samples_dir,
+                            region=REGIONS_ON_WINDOW['center_up'],
+                            grayscale=True
+                            )
     time.sleep(2)
 
 def scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu):
