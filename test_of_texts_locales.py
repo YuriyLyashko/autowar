@@ -39,7 +39,7 @@ class LocalesTests(unittest.TestCase):
 
         '''find game's top menu'''
         self.left_coord_top_menu, self.top_coord_top_menu, self.width_top_menu, self.height_top_menu = \
-            browser.monosearch_1000('top_menu_py_files.png', samples_dir)
+            browser.monosearch_1000('top_menu.png', samples_dir)
 
         '''scroll down'''
         self.driver.execute_script('scroll({},{});'.format(self.left_coord_top_menu, self.top_coord_top_menu - 150))
