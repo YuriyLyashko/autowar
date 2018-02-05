@@ -1004,3 +1004,55 @@ def quest_16(REGIONS_ON_FULL_SCREEN):
     browser.monoregion_multisearch_and_click('button_ok.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
+    '''find button_continue'''
+    browser.monoregion_multisearch_and_click('button_continue.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    time.sleep(1)
+    '''find quest_16_3_icon'''
+    browser.monoregion_multisearch_and_click('quest_16_3_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    time.sleep(1)
+    '''find quest_16_4_icon'''
+    browser.monoregion_multisearch_and_click('quest_16_4_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['right_up'])
+    # time.sleep(1)
+    # '''find help_arrow_up'''
+    # browser.monoregion_multisearch_and_click('help_arrow_up.png',
+    #                                          samples_dir,
+    #                                          higher_on=60,
+    #                                          region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    # time.sleep(1)
+    # '''find button_mails'''
+    # browser.monoregion_multisearch_and_click('button_mails.png',
+    #                                          samples_dir,
+    #                                          region=REGIONS_ON_FULL_SCREEN['center_up'])
+    # time.sleep(1)
+    # '''find button_close_window'''
+    # browser.monoregion_multisearch_and_click('button_close_window.png',
+    #                                          samples_dir,
+    #                                          region=REGIONS_ON_FULL_SCREEN['right_up'])
+    # time.sleep(1)
+    # '''find button_friends'''
+    # browser.monoregion_multisearch_and_click('button_friends.png',
+    #                                          samples_dir,
+    #                                          region=REGIONS_ON_FULL_SCREEN['left_down_menu'])
+    # time.sleep(1)
+    # '''find help_arrow_up'''
+    # browser.monoregion_multisearch_and_click('help_arrow_up.png',
+    #                                          samples_dir,
+    #                                          higher_on=60,
+    #                                          region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    # time.sleep(1)
+    # '''find button_back'''
+    # browser.monoregion_multisearch_and_click('button_back.png',
+    #                                          samples_dir,
+    #                                          region=REGIONS_ON_FULL_SCREEN['left_down_menu'])
+    #
+    # time.sleep(1)
+    # '''find button_close_window'''
+    # browser.monoregion_multisearch_and_click('button_close_window.png',
+    #                                          samples_dir,
+    #                                          region=REGIONS_ON_FULL_SCREEN['right_up'])
