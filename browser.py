@@ -214,3 +214,8 @@ def close_all_bonus_windows(samples_dir, driver, height_screen, left_coord_top_m
     if button_restore:
         click_to_center(button_restore)
     scroll_down(driver, left_coord_top_menu, top_coord_top_menu - 100)
+
+def drag_to(width_point, heigth_point, *args):
+    pyautogui.mouseDown(button='left')
+    pyautogui.dragTo(width_point, heigth_point, *args)
+    pyautogui.mouseUp(button='left')

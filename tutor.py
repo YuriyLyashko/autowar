@@ -867,62 +867,50 @@ def quest_12(REGIONS_ON_FULL_SCREEN):
                                              region=REGIONS_ON_FULL_SCREEN['right_up'])
 
 
+@wrappers.write_log_and_video(videos_dir)
+def quest_13(REGIONS_ON_FULL_SCREEN):
+    time.sleep(1)
+    pyautogui.moveTo(5, 5, 1)
+    '''quest №13 "Арсенал"'''
+    '''find quest_13_1_icon'''
+    browser.monoregion_multisearch_and_click('quest_13_1_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['left_mid'])
 
+    time.sleep(1)
+    '''find button_start_mission'''
+    browser.monoregion_multisearch_and_click('button_start_mission.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
 
+    time.sleep(1)
+    '''find button_buy'''
+    browser.monoregion_multisearch_and_click('button_buy.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['left_down'])
 
+    time.sleep(1)
+    '''find quest_13_2_icon'''
+    browser.multiregion_monosearch_and_click('quest_13_2_icon.png',
+                                             samples_dir,
+                                             regions=REGIONS_ON_FULL_SCREEN)
 
+    '''find free place for Arsenal building'''
+    width_screen, height_screen = browser.get_screen_resolution_size()
+    browser.drag_to(width_screen - width_screen/7, height_screen/7, 2)
 
+    '''installing Arsenal building'''
+    '''find quest_13_3_icon'''
+    browser.multiregion_monosearch_and_click('quest_13_3_icon.png',
+                                             samples_dir,
+                                             lower_on=height_screen/6,
+                                             regions=REGIONS_ON_FULL_SCREEN)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# pyautogui.screenshot('full_scteen.png')
-# pyautogui.screenshot('left_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['left_mid'])
-# pyautogui.screenshot('center_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['center_mid'])
-# pyautogui.screenshot('right_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['right_mid'])
-# pyautogui.screenshot('center_down.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['center_down'])
-# pyautogui.screenshot('right_down.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['right_down'])
-# pyautogui.screenshot('center_up.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['center_up'])
-# pyautogui.screenshot('right_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['right_mid'])
-# pyautogui.screenshot('left_down.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['left_down'])
-# pyautogui.screenshot('center_down.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['center_down'])
-# pyautogui.screenshot('center_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['center_mid'])
-# pyautogui.alert('end')
-# driver.quit()
-
-
+    time.sleep(2)
+    '''click to button_ok'''
+    browser.monoregion_multisearch_and_click('button_ok.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
 
 
 
@@ -957,7 +945,8 @@ def quest_12(REGIONS_ON_FULL_SCREEN):
 
 
 
-# pyautogui.screenshot('full_scteen.png')
+
+        # pyautogui.screenshot('full_scteen.png')
 # pyautogui.screenshot('left_mid.png',
     # samples_dir,
     #  region=REGIONS_ON_WINDOW['left_mid'])
