@@ -54,7 +54,9 @@ if __name__ == '__main__':
         # tutor.quest_10(REGIONS_ON_FULL_SCREEN)
         # tutor.quest_11(REGIONS_ON_FULL_SCREEN)
         # tutor.quest_12(REGIONS_ON_FULL_SCREEN)
-        tutor.quest_13(REGIONS_ON_FULL_SCREEN)
+        # tutor.quest_13(REGIONS_ON_FULL_SCREEN)
+        # tutor.quest_14(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_15(REGIONS_ON_FULL_SCREEN)
 
 
 

@@ -522,10 +522,6 @@ def quest_6(REGIONS_ON_FULL_SCREEN):
 
 @wrappers.write_log_and_video(videos_dir)
 def quest_7(REGIONS_ON_FULL_SCREEN):
-    # print(browser.monosearch_1000('10.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['right_up_menu']))
-
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
     '''quest №7 "Заварушка в лесу"'''
@@ -866,7 +862,6 @@ def quest_12(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['right_up'])
 
-
 @wrappers.write_log_and_video(videos_dir)
 def quest_13(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
@@ -912,70 +907,68 @@ def quest_13(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
+@wrappers.write_log_and_video(videos_dir)
+def quest_14(REGIONS_ON_FULL_SCREEN):
+    time.sleep(1)
+    pyautogui.moveTo(5, 5, 1)
+    '''quest №14 "Все для фронта"'''
+    '''find quest_14_1_icon'''
+    browser.monoregion_multisearch_and_click('quest_14_1_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['left_mid'])
+    time.sleep(1)
+    '''find button_start_mission'''
+    browser.monoregion_multisearch_and_click('button_start_mission.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
+    time.sleep(1)
+    '''find quest_14_2_icon'''
+    browser.monoregion_multisearch_and_click('quest_14_2_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    time.sleep(1)
+    '''find button_create'''
+    browser.monoregion_multisearch_and_click('button_create.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    time.sleep(1)
+    '''click to button_ok'''
+    browser.monoregion_multisearch_and_click('button_ok.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
 
+@wrappers.write_log_and_video(videos_dir)
+def quest_15(REGIONS_ON_FULL_SCREEN):
+    time.sleep(1)
+    pyautogui.moveTo(5, 5, 1)
+    '''quest №15 "Всегда на страже"'''
+    '''find quest_15_1_icon'''
+    browser.monoregion_multisearch_and_click('quest_15_1_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['left_mid'])
+    time.sleep(1)
+    '''find button_start_mission'''
+    browser.monoregion_multisearch_and_click('button_start_mission.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
+    time.sleep(1)
+    '''find quest_15_2_icon'''
+    browser.monoregion_multisearch_and_click('quest_15_2_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    time.sleep(1)
+    '''find quest_15_3_icon'''
+    browser.monoregion_multisearch_and_click('quest_15_3_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    time.sleep(1)
+    '''find quest_15_4_icon'''
+    browser.monoregion_multisearch_and_click('quest_15_4_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['left_up'])
+    time.sleep(1)
+    '''click to button_ok'''
+    browser.monoregion_multisearch_and_click('button_ok.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # pyautogui.screenshot('full_scteen.png')
-# pyautogui.screenshot('left_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['left_mid'])
-# pyautogui.screenshot('center_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['center_mid'])
-# pyautogui.screenshot('right_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['right_mid'])
-# pyautogui.screenshot('center_down.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['center_down'])
-# pyautogui.screenshot('right_down.png',
-    # samples_dir,
-    #  region=REGIONS_ON_WINDOW['right_down'])
-# pyautogui.screenshot('center_up.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['center_up'])
-# pyautogui.screenshot('right_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['right_mid'])
-# pyautogui.screenshot('left_down.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['left_down'])
-# pyautogui.screenshot('center_down.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['center_down'])
-# pyautogui.screenshot('center_mid.png',
-    # samples_dir,
-    #  region=REGIONS_ON_FULL_SCREEN['center_mid'])
-# pyautogui.alert('end')
-# driver.quit()
