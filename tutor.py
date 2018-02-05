@@ -972,3 +972,35 @@ def quest_15(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
 
+@wrappers.write_log_and_video(videos_dir)
+def quest_16(REGIONS_ON_FULL_SCREEN):
+    time.sleep(1)
+    pyautogui.moveTo(5, 5, 1)
+    '''quest №16 "Рекрут который кричал волк"'''
+    '''find quest_16_1_icon'''
+    browser.monoregion_multisearch_and_click('quest_16_1_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['left_mid'])
+    time.sleep(1)
+    '''find button_start_mission'''
+    browser.monoregion_multisearch_and_click('button_start_mission.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
+    time.sleep(1)
+    '''find button_edit'''
+    browser.monoregion_multisearch_and_click('button_edit.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['right_up'])
+    time.sleep(1)
+    '''find quest_16_2_icon'''
+    browser.monoregion_multisearch_and_click('quest_16_2_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    time.sleep(1)
+    pyautogui.click()
+
+    time.sleep(1)
+    '''click to button_ok'''
+    browser.monoregion_multisearch_and_click('button_ok.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
