@@ -61,6 +61,7 @@ if __name__ == '__main__':
 
 
 
+
         driver.quit()
         finish_time = datetime.datetime.now()
         logging.info('finish')
