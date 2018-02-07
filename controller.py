@@ -19,7 +19,7 @@ if __name__ == '__main__':
         logging.info('\n\n\n         tutor test, launch {}'.format(n))
         logging.info('start')
 
-        # wipe_user_progress.wipe(SOCIAL, SERVER, ID)
+        wipe_user_progress.wipe(SOCIAL, SERVER, ID)
         driver = browser.open_browser()
         browser.go_to_social_network(driver, SOC_NET_LINKS[SOCIAL])
         browser.login(driver, SOC_AUTH_INFO[SOCIAL]['LOGIN'], SOC_AUTH_INFO[SOCIAL]['PASS'])
@@ -35,29 +35,32 @@ if __name__ == '__main__':
         browser.accept_flash_running(REGIONS_ON_FULL_SCREEN['left_up'], samples_dir)
 
 
-        time.sleep(40)
-        browser.scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu)
-        browser.set_full_screen(samples_dir, REGIONS_ON_WINDOW)
+        # time.sleep(40)
+        # browser.scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu)
+        # browser.set_full_screen(samples_dir, REGIONS_ON_WINDOW)
 
 
-        # tutor.choose_nation(REGIONS_ON_WINDOW)
-        # tutor.first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_1(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_2(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_3(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_4(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_5(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_6(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_7(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_8(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_9(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_10(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_11(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_12(REGIONS_ON_FULL_SCREEN)
-        # tutor.quest_13(REGIONS_ON_FULL_SCREEN)
+        tutor.choose_nation(REGIONS_ON_WINDOW)
+        tutor.first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN)
+        tutor.quest_1(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_2(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_3(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_4(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_5(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_6(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_7(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_8(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_9(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_10(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_11(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_12(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_13(REGIONS_ON_FULL_SCREEN)
         # tutor.quest_14(REGIONS_ON_FULL_SCREEN)
         tutor.quest_15(REGIONS_ON_FULL_SCREEN)
         tutor.quest_16(REGIONS_ON_FULL_SCREEN)
+        tutor.quest_17(REGIONS_ON_FULL_SCREEN)
+
+
 
 
 

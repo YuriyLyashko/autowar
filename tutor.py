@@ -58,8 +58,6 @@ def choose_nation(REGIONS_ON_WINDOW):
 
 @wrappers.write_log_and_video(videos_dir)
 def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
-    # time.sleep(20)
-
     pyautogui.moveTo(5, 5, 1)
     if browser.monosearch_1000('button_to_battle.png',
                                samples_dir,
@@ -68,42 +66,35 @@ def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
         browser.monoregion_multisearch_and_click('button_full_screen_game.png',
                                                  samples_dir,
                                                  region=REGIONS_ON_WINDOW['right_down'])
-
-    time.sleep(10)
+    time.sleep(5)
     pyautogui.moveTo(5, 5, 1)
     '''click to button_to_battle'''
     browser.monoregion_multisearch_and_click('button_to_battle.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_up'])
-
     time.sleep(35)
     pyautogui.moveTo(5, 5, 1)
     '''find button_art_bomb'''
     browser.monoregion_multisearch_and_click('button_art_bomb.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['right_mid'])
-
     '''click to area_art_bomb'''
     browser.monoregion_multisearch_and_click('help_arrow_down.png',
                                              samples_dir,
-
                                              lower_on=100,
                                              region=REGIONS_ON_FULL_SCREEN['center_mid'])
-
     time.sleep(10)
     pyautogui.moveTo(5, 5, 1)
     '''click to button_continue'''
     browser.monoregion_multisearch_and_click('button_continue.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['left_down'])
-
     time.sleep(20)
     pyautogui.moveTo(5, 5, 1)
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
-
     time.sleep(5)
     pyautogui.moveTo(5, 5, 1)
     '''click to button_continue'''
@@ -838,9 +829,9 @@ def quest_12(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(1)
     '''find quest_12_2_icon'''
-    browser.multiregion_monosearch_and_click('quest_12_2_icon.png',
+    browser.monoregion_multisearch_and_click('quest_12_2_icon.png',
                                              samples_dir,
-                                             regions=REGIONS_ON_FULL_SCREEN)
+                                             region=REGIONS_ON_FULL_SCREEN['left_up'])
 
     time.sleep(1)
     '''find quest_12_3_icon'''
@@ -1018,41 +1009,117 @@ def quest_16(REGIONS_ON_FULL_SCREEN):
     browser.monoregion_multisearch_and_click('quest_16_4_icon.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['right_up'])
-    # time.sleep(1)
-    # '''find help_arrow_up'''
-    # browser.monoregion_multisearch_and_click('help_arrow_up.png',
-    #                                          samples_dir,
-    #                                          higher_on=60,
-    #                                          region=REGIONS_ON_FULL_SCREEN['center_mid'])
-    # time.sleep(1)
-    # '''find button_mails'''
-    # browser.monoregion_multisearch_and_click('button_mails.png',
-    #                                          samples_dir,
-    #                                          region=REGIONS_ON_FULL_SCREEN['center_up'])
-    # time.sleep(1)
-    # '''find button_close_window'''
-    # browser.monoregion_multisearch_and_click('button_close_window.png',
-    #                                          samples_dir,
-    #                                          region=REGIONS_ON_FULL_SCREEN['right_up'])
-    # time.sleep(1)
-    # '''find button_friends'''
-    # browser.monoregion_multisearch_and_click('button_friends.png',
-    #                                          samples_dir,
-    #                                          region=REGIONS_ON_FULL_SCREEN['left_down_menu'])
-    # time.sleep(1)
-    # '''find help_arrow_up'''
-    # browser.monoregion_multisearch_and_click('help_arrow_up.png',
-    #                                          samples_dir,
-    #                                          higher_on=60,
-    #                                          region=REGIONS_ON_FULL_SCREEN['center_mid'])
-    # time.sleep(1)
-    # '''find button_back'''
-    # browser.monoregion_multisearch_and_click('button_back.png',
-    #                                          samples_dir,
-    #                                          region=REGIONS_ON_FULL_SCREEN['left_down_menu'])
-    #
-    # time.sleep(1)
-    # '''find button_close_window'''
-    # browser.monoregion_multisearch_and_click('button_close_window.png',
-    #                                          samples_dir,
-    #                                          region=REGIONS_ON_FULL_SCREEN['right_up'])
+    time.sleep(1)
+    '''find help_arrow_up'''
+    help_arrow_up = browser.monosearch_1000('help_arrow_up.png',
+                                            samples_dir,
+                                            region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    if not help_arrow_up:
+        '''find button_close_window'''
+        browser.monoregion_multisearch_and_click('button_close_window.png',
+                                                 samples_dir,
+                                                 region=REGIONS_ON_FULL_SCREEN['right_up'])
+    else:
+        browser.click_to_center(help_arrow_up, higher_on=60)
+        '''find button_mails'''
+        browser.monoregion_multisearch_and_click('button_mails.png',
+                                                 samples_dir,
+                                                 region=REGIONS_ON_FULL_SCREEN['center_up'])
+        time.sleep(1)
+        '''find button_close_window'''
+        browser.monoregion_multisearch_and_click('button_close_window.png',
+                                                 samples_dir,
+                                                 region=REGIONS_ON_FULL_SCREEN['right_up'])
+        time.sleep(1)
+        '''find button_friends'''
+        browser.monoregion_multisearch_and_click('button_friends.png',
+                                                 samples_dir,
+                                                 region=REGIONS_ON_FULL_SCREEN['left_down_menu'])
+        time.sleep(1)
+        '''find help_arrow_up'''
+        browser.monoregion_multisearch_and_click('help_arrow_up.png',
+                                                 samples_dir,
+                                                 higher_on=60,
+                                                 region=REGIONS_ON_FULL_SCREEN['center_mid'])
+        time.sleep(1)
+        '''find button_back'''
+        browser.monoregion_multisearch_and_click('button_back.png',
+                                                 samples_dir,
+                                                 region=REGIONS_ON_FULL_SCREEN['left_down_menu'])
+    time.sleep(1)
+    '''find button_close_window'''
+    browser.monoregion_multisearch_and_click('button_close_window.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['right_up'])
+
+# @wrappers.write_log_and_video(videos_dir)
+def quest_17(REGIONS_ON_FULL_SCREEN):
+    time.sleep(1)
+    pyautogui.moveTo(5, 5, 1)
+    '''quest №17 ""'''
+    '''find quest_17_1_icon'''
+    browser.monoregion_multisearch_and_click('quest_17_1_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['left_mid'])
+    time.sleep(1)
+    '''find button_start_mission'''
+    browser.monoregion_multisearch_and_click('button_start_mission.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
+    time.sleep(1)
+    '''find quest_17_2_icon'''
+    browser.monoregion_multisearch_and_click('quest_17_2_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
+    time.sleep(1)
+    '''find battle_available'''
+    browser.monoregion_multisearch_and_click('battle_available.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
+    time.sleep(1)
+    '''find button_begin_green'''
+    browser.monoregion_multisearch_and_click('button_begin_green.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
+    time.sleep(15)
+    '''find button_linear_infantry'''
+    browser.monoregion_multisearch_and_click('button_linear_infantry.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down_menu'])
+    time.sleep(1)
+    '''find quest_17_4_icon'''
+    browser.monoregion_multisearch_and_click('quest_17_4_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_down'])
+    time.sleep(1)
+    '''find quest_17_5_icon'''
+    browser.monoregion_multisearch_and_click('quest_17_5_icon.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['left_down'])
+    time.sleep(1)
+    '''find button_to_battle'''
+    browser.monoregion_multisearch_and_click('button_to_battle.png',
+                                             samples_dir,
+                                             region=REGIONS_ON_FULL_SCREEN['center_up'])
+    if browser.monoregion_multisearch('quest_17_6_icon.png',
+                                      samples_dir,
+                                      region=REGIONS_ON_FULL_SCREEN['center_down_menu']):
+        time.sleep(10)
+        '''find button_linear_infantry'''
+        browser.monoregion_multisearch_and_click('button_linear_infantry.png',
+                                                 samples_dir,
+                                                 region=REGIONS_ON_FULL_SCREEN['center_down_menu'])
+        width_screen, height_screen = browser.get_screen_resolution_size()
+        pyautogui.click(x = width_screen/2, y = height_screen/2)
+        '''find button_light_infantry'''
+        browser.monoregion_multisearch_and_click('button_light_infantry.png',
+                                                 samples_dir,
+                                                 region=REGIONS_ON_FULL_SCREEN['center_down_menu'])
+        width_screen, height_screen = browser.get_screen_resolution_size()
+        pyautogui.click(x=width_screen / 2, y=height_screen / 2)
+    time.sleep(40)
+    for _ in range(2):
+        '''click to button_ok'''
+        browser.monoregion_multisearch_and_click('button_ok.png',
+                                                 samples_dir,
+                                                 region=REGIONS_ON_FULL_SCREEN['center_down'])
