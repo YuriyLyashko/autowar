@@ -5,13 +5,19 @@ ru_buttons_dir = '\\screens\\locales\\ru\\buttons\\'
 ru_locales_dir = '\\screens\\locales\\ru\\locales\\'
 en_buttons_dir = '\\screens\\locales\\en\\buttons\\'
 en_locales_dir = '\\screens\\locales\\en\\locales\\'
-
-
-
-
-
-
-
-
+es_buttons_dir = '\\screens\\locales\\es\\buttons\\'
+es_locales_dir = '\\screens\\locales\\es\\locales\\'
+fr_buttons_dir = '\\screens\\locales\\fr\\buttons\\'
+fr_locales_dir = '\\screens\\locales\\fr\\locales\\'
+it_buttons_dir = '\\screens\\locales\\it\\buttons\\'
+it_locales_dir = '\\screens\\locales\\it\\locales\\'
+pl_buttons_dir = '\\screens\\locales\\pl\\buttons\\'
+pl_locales_dir = '\\screens\\locales\\pl\\locales\\'
 de_buttons_dir = '\\screens\\locales\\de\\buttons\\'
 de_locales_dir = '\\screens\\locales\\de\\locales\\'
+ne_buttons_dir = '\\screens\\locales\\ne\\buttons\\'
+ne_locales_dir = '\\screens\\locales\\ne\\locales\\'
+pr_buttons_dir = '\\screens\\locales\\pr\\buttons\\'
+pr_locales_dir = '\\screens\\locales\\pr\\locales\\'
+tr_buttons_dir = '\\screens\\locales\\tr\\buttons\\'
+tr_locales_dir = '\\screens\\locales\\tr\\locales\\'
