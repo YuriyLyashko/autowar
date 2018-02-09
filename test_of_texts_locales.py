@@ -138,6 +138,42 @@ class LocalesTests(unittest.TestCase):
                 with self.subTest():
                     self.assertTrue(browser.monosearch_10(locale, en_locales_dir), msg="{} not finded".format(locale))
 
+    # @unittest.skip('I skip it')
+    @wrappers.write_log_and_video(videos_dir)
+    def test_de_button_tips_locale(self):
+        ''''''
+        pyautogui.moveTo(5, 5, 1)
+        '''choose language'''
+
+        if not browser.monosearch_10('de_language_selected.png', samples_dir):
+            browser.change_lanuage('de_language_selected.png', samples_dir)
+            time.sleep(40)
+
+        pyautogui.moveTo(5, 5, 1)
+        '''close_all_bonus_windows'''
+        browser.close_all_bonus_windows(samples_dir,
+                                        self.driver,
+                                        self.height_screen,
+                                        self.left_coord_top_menu,
+                                        self.top_coord_top_menu
+                                        )
+
+        '''set_full_screen'''
+        browser.set_full_screen(samples_dir, self.REGIONS_ON_WINDOW)
+
+        '''get lists of buttons and locales'''
+        self.buttons = os.listdir('{}{}'.format(os.getcwd(), de_buttons_dir))
+        self.locales = os.listdir('{}{}'.format(os.getcwd(), de_locales_dir))
+
+        '''check locales when focus to buttons'''
+        for button, locale in zip(self.buttons, self.locales):
+            button_coord = browser.monosearch_10(button, de_buttons_dir)
+            with self.subTest():
+                self.assertTrue(button_coord, msg="{} not finded".format(button))
+            if button_coord:
+                browser.move_mouse_to(button_coord)
+                with self.subTest():
+                    self.assertTrue(browser.monosearch_10(locale, de_locales_dir), msg="{} not finded".format(locale))
 
 
 if __name__ == "__main__":

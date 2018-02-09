@@ -94,36 +94,6 @@ def monoregion_multisearch_and_click(image_name,
     image = monoregion_multisearch(image_name, samples_dir, region=region, **kwargs)
     click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
 
-def multiregion_monosearch(image_name,
-                           samples_dir,
-                           regions,
-                           **kwargs):
-    logging.info('{}'.format('multiregion_monosearch'))
-    with Pool(5) as pool:
-        for image in pool.imap_unordered(monosearch, ((image_name, samples_dir, regions['left_up']),
-                                                      (image_name, samples_dir, regions['left_down']),
-                                                      (image_name, samples_dir, regions['center_mid']),
-                                                      (image_name, samples_dir, regions['right_up']),
-                                                      (image_name, samples_dir, regions['right_down']),
-                                                      (image_name), samples_dir, None
-                                                      )
-                                         ):
-            logging.info('{} {}'.format(image_name, image))
-            if image:
-                return image
-    logging.error("{} doesn't find".format(image_name))
-    get_screen(screens_dir)
-    pyautogui.alert("{} doesn't find".format(image_name))
-
-def multiregion_monosearch_and_click(image_name,
-                                     samples_dir,
-                                     regions,
-                                     higher_on=0, lower_on=0, righter_on=0, lefter_on=0,
-                                     **kwargs):
-    logging.info('{}'.format('multiregion_monosearch_and_click'))
-    image = multiregion_monosearch(image_name, samples_dir, regions, **kwargs)
-    click_to_center(image, higher_on=higher_on, lower_on=lower_on, righter_on=righter_on, lefter_on=lefter_on)
-
 def move_mouse_to(button, righter_on=0, lefter_on=0, lower_on=0, higher_on=0):
     x, y = pyautogui.center(button)
     pyautogui.moveTo(x=x + righter_on - lefter_on, y=y + lower_on - higher_on, duration=0.5)
@@ -147,7 +117,6 @@ def set_full_screen(samples_dir, REGIONS_ON_WINDOW):
 def scroll_to_see_top_menu(driver, left_coord_top_menu, top_coord_top_menu):
     logging.info('scroll_to_see_top_menu')
     driver.execute_script('scroll({},{});'.format(left_coord_top_menu, top_coord_top_menu - 100))
-
 
 def open_browser():
     logging.info('''open open_browser''')

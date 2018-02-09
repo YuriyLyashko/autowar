@@ -75,7 +75,7 @@ def first_battle(REGIONS_ON_WINDOW, REGIONS_ON_FULL_SCREEN):
     time.sleep(35)
     pyautogui.moveTo(5, 5, 1)
     '''find button_art_bomb'''
-    browser.monoregion_multisearch_and_click('button_art_bomb.png',
+    browser.monoregion_multisearch_and_click('order_art_bomb.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['right_mid'])
     '''click to area_art_bomb'''
@@ -137,24 +137,20 @@ def quest_2(REGIONS_ON_FULL_SCREEN):
     browser.monoregion_multisearch_and_click('quest_2_1_icon.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['left_mid'])
-
     time.sleep(2)
     '''find button_start_mission'''
     browser.monoregion_multisearch_and_click('button_start_mission.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
-
     '''find button_store'''
     browser.monoregion_multisearch_and_click('button_store.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down_menu'])
-
     time.sleep(2)
     '''find button_buy'''
     browser.monoregion_multisearch_and_click('button_buy.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['center_down'])
-
     time.sleep(2)
     '''click to area build sawmill'''
     '''find and click help_arrow_down'''
@@ -163,7 +159,6 @@ def quest_2(REGIONS_ON_FULL_SCREEN):
                                              lower_on=40,
                                              righter_on=10,
                                              region=REGIONS_ON_FULL_SCREEN['center_mid'])
-
     button_ok = browser.monosearch_10('button_ok.png', samples_dir, region=REGIONS_ON_FULL_SCREEN['center_down'])
     if not button_ok:
         for _ in range(10):
@@ -286,7 +281,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
                                region=REGIONS_ON_FULL_SCREEN['right_mid']):
         logging.info('way 1')
         '''find button_helth'''
-        browser.monoregion_multisearch_and_click('button_helth.png',
+        browser.monoregion_multisearch_and_click('order_bandage.png',
                                                  samples_dir,
                                                  region=REGIONS_ON_FULL_SCREEN['right_mid'])
         time.sleep(1)
@@ -313,7 +308,7 @@ def quest_4(REGIONS_ON_FULL_SCREEN):
         time.sleep(20)
         pyautogui.moveTo(5, 5, 1)
         '''find button_helth'''
-        button_helth = browser.monosearch_1000('button_helth.png',
+        button_helth = browser.monosearch_1000('order_bandage.png',
                                                samples_dir,
                                                region=REGIONS_ON_FULL_SCREEN['right_mid'])
         if button_helth:
@@ -575,7 +570,7 @@ def quest_7(REGIONS_ON_FULL_SCREEN):
     time.sleep(35)
     pyautogui.moveTo(5, 5, 1)
     '''find button_art_strike'''
-    browser.monoregion_multisearch_and_click('button_art_strike.png',
+    browser.monoregion_multisearch_and_click('order_art_strike.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['right_mid'])
 
@@ -585,22 +580,23 @@ def quest_7(REGIONS_ON_FULL_SCREEN):
     '''find help_arrow_down'''
     browser.monoregion_multisearch_and_click('help_arrow_down.png',
                                              samples_dir,
-
                                              lower_on=85,
-                                             region=REGIONS_ON_FULL_SCREEN['center_mid']
-                                             )
+                                             region=REGIONS_ON_FULL_SCREEN['center_mid'])
 
     time.sleep(5)
     '''find button_melee'''
-    browser.monoregion_multisearch_and_click('button_melee.png',
+    browser.monoregion_multisearch_and_click('order_melee.png',
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['right_mid'])
 
     time.sleep(1)
     '''find quest_7_5_icon'''
-    browser.multiregion_monosearch_and_click('quest_7_5_icon.png',
+    browser.monoregion_multisearch_and_click('quest_7_5_icon.png',
                                              samples_dir,
-                                             REGIONS_ON_FULL_SCREEN)
+                                             region=None)
+    # browser.multiregion_monosearch_and_click('quest_7_5_icon.png',
+    #                                          samples_dir,
+    #                                          REGIONS_ON_FULL_SCREEN)
 
     time.sleep(20)
     pyautogui.moveTo(5, 5, 1)
@@ -626,9 +622,9 @@ def quest_7(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(1)
     '''find quest_7_5_icon'''
-    browser.multiregion_monosearch_and_click('quest_7_5_icon.png',
+    browser.monoregion_multisearch_and_click('quest_7_5_icon.png',
                                              samples_dir,
-                                             REGIONS_ON_FULL_SCREEN)
+                                             region=None)
 
     time.sleep(25)
     '''click to button_ok'''
@@ -787,9 +783,9 @@ def quest_11(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(2)
     '''find Town hall'''
-    quest_11_2_icon = browser.multiregion_monosearch('quest_11_2_icon.png',
+    quest_11_2_icon = browser.monoregion_multisearch('quest_11_2_icon.png',
                                                      samples_dir,
-                                                     REGIONS_ON_FULL_SCREEN)
+                                                     region=None)
     '''put Academy on free space'''
     browser.click_to_center(quest_11_2_icon, righter_on=200, lower_on=30)
     time.sleep(3)
@@ -877,9 +873,9 @@ def quest_13(REGIONS_ON_FULL_SCREEN):
 
     time.sleep(1)
     '''find quest_13_2_icon'''
-    browser.multiregion_monosearch_and_click('quest_13_2_icon.png',
+    browser.monoregion_multisearch_and_click('quest_13_2_icon.png',
                                              samples_dir,
-                                             regions=REGIONS_ON_FULL_SCREEN)
+                                             region=None)
 
     '''find free place for Arsenal building'''
     width_screen, height_screen = browser.get_screen_resolution_size()
@@ -887,11 +883,10 @@ def quest_13(REGIONS_ON_FULL_SCREEN):
 
     '''installing Arsenal building'''
     '''find quest_13_3_icon'''
-    browser.multiregion_monosearch_and_click('quest_13_3_icon.png',
+    browser.monoregion_multisearch_and_click('quest_13_3_icon.png',
                                              samples_dir,
                                              lower_on=height_screen/6,
-                                             regions=REGIONS_ON_FULL_SCREEN)
-
+                                             region=None)
     time.sleep(2)
     '''click to button_ok'''
     browser.monoregion_multisearch_and_click('button_ok.png',
@@ -1052,7 +1047,7 @@ def quest_16(REGIONS_ON_FULL_SCREEN):
                                              samples_dir,
                                              region=REGIONS_ON_FULL_SCREEN['right_up'])
 
-# @wrappers.write_log_and_video(videos_dir)
+@wrappers.write_log_and_video(videos_dir)
 def quest_17(REGIONS_ON_FULL_SCREEN):
     time.sleep(1)
     pyautogui.moveTo(5, 5, 1)
